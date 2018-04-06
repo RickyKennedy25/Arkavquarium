@@ -113,3 +113,12 @@ void Position::moveVertical(Position dest,double maxVelocity) {
         this->y += min(maxVelocity, Dy);
     }
 }
+
+/**
+ * compore this position with comp
+ * if equal return true
+ * else return false 
+ */
+bool Position::operator==(Position comp){
+    return this->x == comp.getAbsis() && this->y == comp.getOrdinate();
+}

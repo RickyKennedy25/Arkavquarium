@@ -66,6 +66,13 @@ class Position {
          * but no more than pythagorean distance maxVelocity
          */
         void moveVertical(Position dest,double maxVelocity);
+
+        /**
+         * compore this position with comp
+         * if equal return true
+         * else return false 
+         */
+        bool operator==(Position comp);
 };
 
 
