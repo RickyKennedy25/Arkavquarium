@@ -9,14 +9,10 @@
 #include "../models/Food.hpp"
 #include "../models/Coin.hpp"
 #include "../models/LinkedList.hpp"
+#include "../models/Data.hpp"
 
 class AquariumController {
      private:
-         LinkedList<Guppy*> *guppies;
-         LinkedList<Piranha*> *piranhas;
-         LinkedList<Food*> *foods;
-         LinkedList<Coin*> *coins;
-         Snail *snail;
          Tank *tank;
          int width;
          int height;

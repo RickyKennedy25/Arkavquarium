@@ -6,9 +6,10 @@
 sudo apt install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
 ```
 
-## Compile & Run
+## Usage
 
 ```
+make test # for testing all unit
 make
 ./bin/arkavquarium
 ```

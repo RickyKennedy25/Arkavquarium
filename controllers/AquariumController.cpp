@@ -7,21 +7,15 @@
  * @param {int} width of aquarium
  */
 AquariumController::AquariumController(int height=600, int width=800) {
-    this->guppies = new LinkedList<Guppy*>();
-    this->piranhas = new LinkedList<Piranha*>();
-    this->foods = new LinkedList<Food*>();
-    this->coins = new LinkedList<Coin*>();
 
     Guppy* guppy1 = new Guppy();
-    this->guppies->add(guppy1);
+    Data::getGuppies()->add(guppy1);
 
     Guppy* guppy2 = new Guppy();
-    this->guppies->add(guppy2);
+    Data::getGuppies()->add(guppy2);
 
     Piranha* piranha = new Piranha();
-    this->piranhas->add(piranha);
-
-    this->snail = new Snail();
+    Data::getPiranhas()->add(piranha);
 
     this->height = height;
     this->width = width;
