@@ -47,14 +47,14 @@ class Position {
         /**
          * Set x and y to random
          */
-        void random(double x, double y); // otw diganti sama ricky
-        
+        void random(int maxHeight, int maxWidth);
+
         /**
          * Set x and y to nearest coordinate with dest
          * but no more than pythagorean distance maxVelocity
          */
         void move(Position dest, double maxVelocity);
-        
+
         /**
          * Set x to nearest coordinate with dest
          * but no more than pythagorean distance maxVelocity
@@ -66,6 +66,20 @@ class Position {
          * but no more than pythagorean distance maxVelocity
          */
         void moveVertical(Position dest,double maxVelocity);
+
+        /**
+         * compare this position with comp
+         * if equal return true
+         * else return false 
+         */
+        bool operator==(Position comp);
+
+        /**
+         * compare this position with comp
+         * if notequal return true
+         * else return false 
+         */
+        bool operator!=(Position comp);
 };
 
 

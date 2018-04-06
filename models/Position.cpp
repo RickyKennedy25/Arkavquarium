@@ -4,9 +4,6 @@
 #include <algorithm>
 
 
-#define minHeight 1
-#define minWidth 1
-
 using namespace std;
 
 /**
@@ -19,10 +16,11 @@ Position::Position(double x, double y , bool random) {
     this->x = x;
     this->y = y;
     if(random){
-        int maxWidth = (int)x;
-        int maxHeight = (int)y;
-        this->x = (rand() + minWidth) % (maxWidth + 1);
-        this->y = (rand() + minHeight) % (maxHeight + 1);
+        int maxWidth = (int) x;
+        int maxHeight = (int) y;
+        int pad = (int) x * 15 / 100;
+        this->x = (rand() % (maxWidth - pad)) + pad;
+        this->y = rand()+1 % maxHeight;
     }
 }
 
@@ -60,10 +58,13 @@ void Position::setOrdinate(double y) {
 /**
  * Set x and y to random
  */
-void Position::random(double x, double y) { // biar diganti ricky
+void Position::random(int maxHeight, int maxWidth) {
     srand(0);
-    this->x = (rand() + minWidth) % (800 + 1); //800 max_height
-    this->y = (rand() + minHeight) % (600 + 1); //600 max_width
+    maxWidth = (int)maxWidth;
+    maxHeight = (int)maxHeight;
+    int pad = (int)x * 15 / 100;
+    this->x = (rand() % (maxWidth - pad)) + pad;
+    this->y = rand()+1 % maxHeight ;
 }
 
 /**
@@ -112,4 +113,21 @@ void Position::moveVertical(Position dest,double maxVelocity) {
     else{
         this->y += min(maxVelocity, Dy);
     }
+}
+
+/**
+ * compore this position with comp
+ * if equal return true
+ * else return false 
+ */
+bool Position::operator==(Position comp){
+    return this->x == comp.getAbsis() && this->y == comp.getOrdinate();
+}
+/**
+ * compare this position with comp
+ * if notequal return true
+ * else return false 
+ */
+bool Position::operator!=(Position comp){
+    return this->x != comp.getAbsis() && this->y != comp.getOrdinate();
 }
