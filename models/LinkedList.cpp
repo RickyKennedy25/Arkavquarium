@@ -45,26 +45,19 @@ bool LinkedList<Type>::isEmpty() {
 }
 
 /**
- * Adds a new LinkedListItem
+ * Adds a new LinkedListItem to front of list
  * @param {LinkedListItem<Type>} elemenet
  */
 template<class Type>
 void LinkedList<Type>::add(Type element) {
-    LinkedListItem<Type> *newLinkedListItem;
-    LinkedListItem<Type> *lastLinkedListItem;
+    LinkedListItem<Type> *newItem;
 
-    newLinkedListItem = new LinkedListItem<Type>(element);
-    newLinkedListItem->setPrev(this->last);
-
-    if (this->first == NULL) {
-        this->first = newLinkedListItem;
+    newItem = new LinkedListItem<Type>(element);
+    newItem->setNext(this->first);
+    this->first = newItem;
+    if (this->last == NULL) {
+        this->last = newItem;
     }
-    if (this->last != NULL) {
-        lastLinkedListItem = this->last;
-        lastLinkedListItem->setNext(newLinkedListItem);
-    }
-
-    this->last = newLinkedListItem;
 }
     
 /**
@@ -98,43 +91,69 @@ void LinkedList<Type>::remove(Type element) {
             Next->setPrev(Prev);
         }
     }
-    
 }
 
 /**
  * @param {int} Element index, must less than sizeof LinkedList
- * @return {LinkedListItem<Type>} i-th element in the LinkedList
+ * @return {Type} i-th element in the LinkedList
  */
-template<class Type>
-Type LinkedList<Type>::get(int index) {
-    LinkedListItem<Type> *TempLinkedListItem;
+template <class Type>
+Type LinkedList<Type>::getContentAt(int index) {
+    return this->getItemAt(index)->getContent();
+}
+
+/**
+ * @param {int} Element index, must less than sizeof LinkedList
+ * @return {LinkedListItem<Type>*} i-th item in the LinkedList
+ */
+template <class Type>
+LinkedListItem<Type>* LinkedList<Type>::getItemAt(int index) {
+    LinkedListItem<Type> *item;
     int i = 0;
 
-    TempLinkedListItem = this->first;
-    
-    while (i < index && TempLinkedListItem != this->last) {
-        TempLinkedListItem = TempLinkedListItem->getNext();
+    item = this->first;
+
+    while (i < index && item != this->last) {
+        item = item->getNext();
         i++;
     }
-    return TempLinkedListItem->getContent();
+    return item;
 }
 
 /**
  * The List is not empty
- * @return {LinkedListItem} first LinkedListItem
+ * @return {Type} content of first LinkedListItem
  */
 template<class Type>
-Type LinkedList<Type>::getFirst() {
+Type LinkedList<Type>::getFirstContent() {
     return this->first->getContent();
 }
 
 /**
  * The List is not empty
- * @return {LinkedListItem} last LinkedListItem
+ * @return {LinkedListItem<Type>*} first LinkedListItem
  */
 template<class Type>
-Type LinkedList<Type>::getLast() {
+LinkedListItem<Type>* LinkedList<Type>::getFirstItem() {
+    return this->first;
+}
+
+/**
+ * The List is not empty
+ * @return {Type} content of last LinkedListItem
+ */
+template<class Type>
+Type LinkedList<Type>::getLastContent() {
     return this->last->getContent();
+}
+
+/**
+ * The List is not empty
+ * @return {LinkedListItem<Type>*} last LinkedListItem
+ */
+template<class Type>
+LinkedListItem<Type>* LinkedList<Type>::getLastItem() {
+    return this->last;
 }
 
 #endif

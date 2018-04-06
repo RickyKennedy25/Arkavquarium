@@ -1,6 +1,7 @@
 #include "Guppy.hpp"
 
 const double Guppy::PRODUCE_COIN_PERIOD = 5;
+const std::string Guppy::assetPath = "assets/img/guppy.png";
 
 /**
  * Construct Guppy
@@ -24,4 +25,11 @@ bool Guppy::isProduceCoin() {
  */
 void Guppy::update() {
     this->produceCoinTimer++;
+}
+
+/**
+ * @return {std::string} asset path
+ */
+std::string Guppy::getAssetPath() {
+    return Guppy::assetPath;
 }

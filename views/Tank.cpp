@@ -102,7 +102,7 @@ void Tank::clear_screen() {
 }
 
 void Tank::update_screen() {
-    SDL_UpdateWindowSurface(sdlWindow);
+    SDL_UpdateWindowSurface(this->sdlWindow);
 }
 
 void Tank::handle_input() {

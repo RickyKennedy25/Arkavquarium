@@ -6,7 +6,7 @@
  * @param {int} height of aquarium
  * @param {int} width of aquarium
  */
-AquariumController::AquariumController(int height=600, int width=800) {
+AquariumController::AquariumController(int height, int width) {
 
     Guppy* guppy1 = new Guppy();
     Data::getGuppies()->add(guppy1);
@@ -143,7 +143,20 @@ void AquariumController::moveObjects() {
  */
 void AquariumController::draw() {
     this->tank->clear_screen();
-    this->tank->draw_text("Panah untuk bergerak, r untuk reset, x untuk keluar", 18, 10, 10, 0, 0, 0);
-    //this->tank.draw_image("assets/ikan.png", cx, cy);
+    //this->tank->draw_text("Panah untuk bergerak, r untuk reset, x untuk keluar", 18, 10, 10, 0, 0, 0);
+    this->tank->draw_image("assets/img/Tanks.jpg",this->width/2,this->height/2);
+
+    LinkedListItem<Guppy*>* guppyIt;
+    guppyIt = Data::getGuppies()->getFirstItem();
+    while (guppyIt != NULL) {
+        std::cout << guppyIt->getContent()->getPosition()->getAbsis() << std::endl;/*
+        this->tank->draw_image(
+            Guppy::getAssetPath(),
+            guppyIt->getContent()->getPosition()->getAbsis(),
+            guppyIt->getContent()->getPosition()->getOrdinate()
+        );*/
+        guppyIt = guppyIt->getNext();
+    }
+
     this->tank->update_screen();
 }
