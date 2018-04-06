@@ -3,8 +3,8 @@
 #include <iostream>
 
 Tank::Tank(int width, int height) {
-    this->width = 640;
-    this->height = 480;
+    this->width = width;
+    this->height = height;
 
     this->sdlWindow = NULL;
     this->gScreenSurface = NULL;
