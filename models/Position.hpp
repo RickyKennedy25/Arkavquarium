@@ -20,7 +20,7 @@ class Position {
          * @param {double} absis of Position
          * @param {double} ordinate of Position
          */
-        Position(double x, double y, bool random);
+        Position(double x, double y, bool random=false);
         
         /**
          * @return {double} absis of the position
@@ -47,7 +47,7 @@ class Position {
         /**
          * Set x and y to random
          */
-        void random();
+        void random(double x, double y); // otw diganti sama ricky
         
         /**
          * Set x and y to nearest coordinate with dest

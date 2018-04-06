@@ -12,7 +12,7 @@ int testPositionAbsis() {
     delete p;
 
     itTestUnit("absis setter and getter");
-    p = new Position();
+    p = new Position(0, 0);
     p->setAbsis(2.5);
     if (p->getAbsis() == 2.5) { itSuccess(); }
     else { itFailed(); countFail++; }
@@ -27,12 +27,12 @@ int testPositionOrdinate() {
 
     itTestUnit("ordinate constructor");
     p = new Position(2.5, 3.5);
-    if (p->getAbsis() == 3.5) { itSuccess(); }
+    if (p->getOrdinate() == 3.5) { itSuccess(); }
     else { itFailed(); countFail++; }
     delete p;
 
     itTestUnit("ordinate setter and getter");
-    p = new Position();
+    p = new Position(0, 0);
     p->setOrdinate(2.5);
     if (p->getOrdinate() == 2.5) { itSuccess(); }
     else { itFailed(); countFail++; }
@@ -46,18 +46,54 @@ int testPositionMove() {
 
     itTestUnit("moving to destination in less than range");
     source = new Position(100,100);
-    dest = new Position(160,180);
+    dest = new Position(40,180);
     source->move(*dest, 100);
-    if (source->getAbsis() == 160 && source->getOrdinate() == 180) { itSuccess(); }
+    if (source->getAbsis() == 40 && source->getOrdinate() == 180) { itSuccess(); }
     else { itFailed(); countFail++; }
     delete source;
     delete dest;
 
     itTestUnit("moving to destination in more than range");
     source = new Position(100,100);
-    dest = new Position(160,180);
+    dest = new Position(40,180);
     source->move(*dest, 50);
-    if (source->getAbsis() == 130 && source->getOrdinate() == 140) { itSuccess(); }
+    if (source->getAbsis() == 70 && source->getOrdinate() == 140) { itSuccess(); }
+    else { itFailed(); countFail++; }
+    delete source;
+    delete dest;
+
+    itTestUnit("moving horizontally to destination in less than range");
+    source = new Position(100,100);
+    dest = new Position(40,180);
+    source->move(*dest, 100);
+    if (source->getAbsis() == 40 && source->getOrdinate() == 100) { itSuccess(); }
+    else { itFailed(); countFail++; }
+    delete source;
+    delete dest;
+
+    itTestUnit("moving horizontally to destination in more than range");
+    source = new Position(100,100);
+    dest = new Position(40,180);
+    source->move(*dest, 50);
+    if (source->getAbsis() == 50 && source->getOrdinate() == 100) { itSuccess(); }
+    else { itFailed(); countFail++; }
+    delete source;
+    delete dest;
+
+    itTestUnit("moving vertically to destination in less than range");
+    source = new Position(100,100);
+    dest = new Position(40,180);
+    source->move(*dest, 100);
+    if (source->getAbsis() == 100 && source->getOrdinate() == 180) { itSuccess(); }
+    else { itFailed(); countFail++; }
+    delete source;
+    delete dest;
+
+    itTestUnit("moving vertically to destination in more than range");
+    source = new Position(100,100);
+    dest = new Position(40,180);
+    source->move(*dest, 50);
+    if (source->getAbsis() == 100 && source->getOrdinate() == 150) { itSuccess(); }
     else { itFailed(); countFail++; }
     delete source;
     delete dest;
@@ -88,6 +124,20 @@ int testPositionEqual() {
     return countFail;
 }
 
+int testPositionRandom() {
+    int countFail = 0;
+    Position *p;;
+
+    itTestUnit("randomizing position");
+    p = new Position(20, 30);
+    p->random(10, 10);
+    if (p->getAbsis() <= 10 && p->getOrdinate() <= 10) { itSuccess(); }
+    else { itFailed(); countFail++; }
+    delete p;
+
+    return countFail;
+}
+
 int testPosition() {
     int countFail = 0;
 
@@ -96,6 +146,7 @@ int testPosition() {
     countFail += testPositionOrdinate();
     countFail += testPositionMove();
     countFail += testPositionEqual();
+    countFail += testPositionRandom();
     
     return countFail;
 }

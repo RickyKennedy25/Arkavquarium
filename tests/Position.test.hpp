@@ -4,6 +4,7 @@
 int testPositionAbsis();
 int testPositionOrdinate();
 int testPositionMove();
+int testPositionRandom();
 int testPosition();
 
 #endif

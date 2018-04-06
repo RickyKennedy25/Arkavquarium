@@ -88,6 +88,8 @@ bool AquariumController::main(double elapsedSeconds) {
     }
     if (!stillRunning) return false;
 
+    this->draw();
+
     return true;
 }
 

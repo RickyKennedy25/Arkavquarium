@@ -14,7 +14,7 @@ using namespace std;
  * @param {double} absis of Position
  * @param {double} ordinate of Position
  */
-Position::Position(double x, double y , bool random=false) {
+Position::Position(double x, double y , bool random) {
     srand(0);
     this->x = x;
     this->y = y;
@@ -60,7 +60,7 @@ void Position::setOrdinate(double y) {
 /**
  * Set x and y to random
  */
-void Position::random() {
+void Position::random(double x, double y) { // biar diganti ricky
     srand(0);
     this->x = (rand() + minWidth) % (800 + 1); //800 max_height
     this->y = (rand() + minHeight) % (600 + 1); //600 max_width
