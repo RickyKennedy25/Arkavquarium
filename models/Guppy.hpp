@@ -9,12 +9,12 @@ class Guppy : public Fish {
          * Period time for Guppy producing coin
          * @todo set constant
          */
-       const int PRODUCE_COIN_PERIOD =5;
+       const static double PRODUCE_COIN_PERIOD;
         /**
          * Timer for producing coin
          * Updated every update method is called
          */
-       int produceCoinTimer;
+       double produceCoinTimer;
     public:
         /**
          * Construct Guppy

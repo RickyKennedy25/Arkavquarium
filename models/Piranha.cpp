@@ -3,8 +3,8 @@
 /**
  * Construct Piranha with isJustEatGuppy as False
  */
-Piranha::Piranha() {
-    //
+Piranha::Piranha():Fish::Fish(){
+    this->isJustEatGuppy= false;
 }
 
 /**
@@ -12,12 +12,14 @@ Piranha::Piranha() {
  * @return {bool} isJustEatGuppy before edited
  */
 bool Piranha::isProduceCoin() {
-    return true;
+    bool Temp = this->isJustEatGuppy;
+    this->isJustEatGuppy = false;
+    return Temp;
 }
 
 /**
  * Set isJustEatGuppy to True
  */
 void Piranha::eatGuppy() {
-    //
+    this->isJustEatGuppy = true;
 }
