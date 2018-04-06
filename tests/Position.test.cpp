@@ -11,6 +11,12 @@ int testPositionAbsis() {
     else { itFailed(); countFail++; }
     delete p;
 
+    itTestUnit("random absis constructor");
+    p = new Position(1, 10000);
+    if (p->getAbsis() <= 1 && p->getAbsis() >= 0) { itSuccess(); }
+    else { itFailed(); countFail++; }
+    delete p;
+
     itTestUnit("absis setter and getter");
     p = new Position(0, 0);
     p->setAbsis(2.5);
@@ -28,6 +34,12 @@ int testPositionOrdinate() {
     itTestUnit("ordinate constructor");
     p = new Position(2.5, 3.5);
     if (p->getOrdinate() == 3.5) { itSuccess(); }
+    else { itFailed(); countFail++; }
+    delete p;
+
+    itTestUnit("random ordinate constructor");
+    p = new Position(10000, 1);
+    if (p->getOrdinate() <= 1 && p->getOrdinate() >= 0) { itSuccess(); }
     else { itFailed(); countFail++; }
     delete p;
 
@@ -65,7 +77,7 @@ int testPositionMove() {
     itTestUnit("moving horizontally to destination in less than range");
     source = new Position(100,100);
     dest = new Position(40,180);
-    source->move(*dest, 100);
+    source->moveHorizontal(*dest, 100);
     if (source->getAbsis() == 40 && source->getOrdinate() == 100) { itSuccess(); }
     else { itFailed(); countFail++; }
     delete source;
@@ -74,7 +86,7 @@ int testPositionMove() {
     itTestUnit("moving horizontally to destination in more than range");
     source = new Position(100,100);
     dest = new Position(40,180);
-    source->move(*dest, 50);
+    source->moveHorizontal(*dest, 50);
     if (source->getAbsis() == 50 && source->getOrdinate() == 100) { itSuccess(); }
     else { itFailed(); countFail++; }
     delete source;
@@ -83,7 +95,7 @@ int testPositionMove() {
     itTestUnit("moving vertically to destination in less than range");
     source = new Position(100,100);
     dest = new Position(40,180);
-    source->move(*dest, 100);
+    source->moveVertical(*dest, 100);
     if (source->getAbsis() == 100 && source->getOrdinate() == 180) { itSuccess(); }
     else { itFailed(); countFail++; }
     delete source;
@@ -92,7 +104,7 @@ int testPositionMove() {
     itTestUnit("moving vertically to destination in more than range");
     source = new Position(100,100);
     dest = new Position(40,180);
-    source->move(*dest, 50);
+    source->moveVertical(*dest, 50);
     if (source->getAbsis() == 100 && source->getOrdinate() == 150) { itSuccess(); }
     else { itFailed(); countFail++; }
     delete source;
@@ -108,7 +120,7 @@ int testPositionEqual() {
     itTestUnit("checking points are equal");
     p1 = new Position(2.5, 3.5);
     p2 = new Position(2.500, 3.500);
-    if (p1 == p2) { itSuccess(); }
+    if (*p1 == *p2) { itSuccess(); }
     else { itFailed(); countFail++; }
     delete p1;
     delete p2;
@@ -116,7 +128,7 @@ int testPositionEqual() {
     itTestUnit("checking points are not equal");
     p1 = new Position(2.5, 3.5);
     p2 = new Position(2.5001, 3.5001);
-    if (!(p1 == p2)) { itSuccess(); }
+    if (*p1 != *p2) { itSuccess(); }
     else { itFailed(); countFail++; }
     delete p1;
     delete p2;

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <algorithm>
-
+#include <iostream>
 
 using namespace std;
 
@@ -12,15 +12,11 @@ using namespace std;
  * @param {double} ordinate of Position
  */
 Position::Position(double x, double y , bool random) {
-    srand(0);
-    this->x = x;
-    this->y = y;
-    if(random){
-        int maxWidth = (int) x;
-        int maxHeight = (int) y;
-        int pad = (int) x * 15 / 100;
-        this->x = (rand() % (maxWidth - pad)) + pad;
-        this->y = rand()+1 % maxHeight;
+    if (random) {
+        this->random(x, y);
+    } else {
+        this->x = x;
+        this->y = y;
     }
 }
 
@@ -60,11 +56,9 @@ void Position::setOrdinate(double y) {
  */
 void Position::random(int maxHeight, int maxWidth) {
     srand(0);
-    maxWidth = (int)maxWidth;
-    maxHeight = (int)maxHeight;
-    int pad = (int)x * 15 / 100;
-    this->x = (rand() % (maxWidth - pad)) + pad;
-    this->y = rand()+1 % maxHeight ;
+    int pad = maxWidth * 15 / 100;
+    this->x = (rand() % (maxWidth - 2 * pad)) + pad;
+    this->y = rand() % maxHeight;
 }
 
 /**
@@ -89,13 +83,12 @@ void Position::move(Position dest, double maxVelocity) {
  * but no more than pythagorean distance maxVelocity
  */
 void Position::moveHorizontal(Position dest, double maxVelocity) {
-    //
-    double Dx;
-    Dx = dest.getAbsis();
-    if(Dx < this->x){
-        this->x += max(maxVelocity,Dx);
-    }else{
-        this->x += min(maxVelocity,Dx);
+    double dx;
+    dx = dest.getAbsis() - this->x;
+    if (dx < 0) {
+        this->x += max(-maxVelocity, dx);
+    } else {
+        this->x += min(maxVelocity, dx);
     }
     
 }
@@ -105,29 +98,27 @@ void Position::moveHorizontal(Position dest, double maxVelocity) {
  * but no more than pythagorean distance maxVelocity
  */
 void Position::moveVertical(Position dest,double maxVelocity) {
-    double Dy;
-    Dy = dest.getAbsis();
-    if (Dy < this->y){
-        this->y += max(maxVelocity, Dy);
-    }
-    else{
-        this->y += min(maxVelocity, Dy);
+    double dy;
+    dy = dest.getOrdinate() - this->y;
+    if (dy < 0) {
+        this->y += max(-maxVelocity, dy);
+    } else {
+        this->y += min(maxVelocity, dy);
     }
 }
 
 /**
- * compore this position with comp
- * if equal return true
- * else return false 
+ * Compare this position with comp
+ * @return {bool} is two position has same absis and ordinate
  */
-bool Position::operator==(Position comp){
+bool Position::operator==(Position comp) {
     return this->x == comp.getAbsis() && this->y == comp.getOrdinate();
 }
+
 /**
- * compare this position with comp
- * if notequal return true
- * else return false 
+ * Compare this position with comp
+ * @return {bool} is two position has different absis or ordinate
  */
 bool Position::operator!=(Position comp){
-    return this->x != comp.getAbsis() && this->y != comp.getOrdinate();
+    return this->x != comp.getAbsis() || this->y != comp.getOrdinate();
 }
