@@ -54,7 +54,7 @@ void Position::setOrdinate(double y) {
 /**
  * Set x and y to random
  */
-void Position::random(int maxHeight, int maxWidth) {
+void Position::random(int maxWidth, int maxHeight) {
     srand(0);
     int pad = maxWidth * 15 / 100;
     this->x = (rand() % (maxWidth - 2 * pad)) + pad;

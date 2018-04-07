@@ -7,8 +7,7 @@ const std::string Guppy::assetPath = "assets/img/guppy.png";
  * Construct Guppy
  * Set produceCoinTimer to 0
  */
-Guppy::Guppy() : Fish::Fish()
-{
+Guppy::Guppy(int maxWidth, int maxHeight) : Fish::Fish(maxWidth, maxHeight) {
     this->produceCoinTimer =0;
 }
 

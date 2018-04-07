@@ -11,8 +11,8 @@
  * Set orientation according to destination
  * Set eatCounter to zero
  */
-Fish::Fish() {
-    //
+Fish::Fish(int maxWidth, int maxHeight) {
+    this->position = new Position(maxWidth, maxHeight, true);
 }
 
 /**
@@ -23,7 +23,7 @@ Status Fish::getStatus() const {
 }
 
 Position* Fish::getPosition() const {
-    return NULL;
+    return this->position;
 }
 
 Position* Fish::getDestination() const {

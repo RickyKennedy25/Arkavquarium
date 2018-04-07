@@ -6,19 +6,19 @@
  * @param {int} height of aquarium
  * @param {int} width of aquarium
  */
-AquariumController::AquariumController(int height, int width) {
-
-    Guppy* guppy1 = new Guppy();
-    Data::getGuppies()->add(guppy1);
-
-    Guppy* guppy2 = new Guppy();
-    Data::getGuppies()->add(guppy2);
-
-    Piranha* piranha = new Piranha();
-    Data::getPiranhas()->add(piranha);
+AquariumController::AquariumController(int width, int height) {
 
     this->height = height;
     this->width = width;
+
+    Guppy* guppy1 = new Guppy(this->width, this->height);
+    Data::getGuppies()->add(guppy1);
+
+    Guppy* guppy2 = new Guppy(this->width, this->height);
+    Data::getGuppies()->add(guppy2);
+
+    Piranha* piranha = new Piranha(this->width, this->height);
+    Data::getPiranhas()->add(piranha);
 
     this->tank = new Tank(this->width, this->height);
     this->tank->init();
@@ -149,12 +149,11 @@ void AquariumController::draw() {
     LinkedListItem<Guppy*>* guppyIt;
     guppyIt = Data::getGuppies()->getFirstItem();
     while (guppyIt != NULL) {
-        std::cout << guppyIt->getContent() << std::endl;/*
         this->tank->draw_image(
             Guppy::getAssetPath(),
             guppyIt->getContent()->getPosition()->getAbsis(),
             guppyIt->getContent()->getPosition()->getOrdinate()
-        );*/
+        );
         guppyIt = guppyIt->getNext();
     }
 

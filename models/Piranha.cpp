@@ -3,7 +3,7 @@
 /**
  * Construct Piranha with isJustEatGuppy as False
  */
-Piranha::Piranha():Fish::Fish(){
+Piranha::Piranha(int maxWidth, int maxHeight):Fish::Fish(maxWidth, maxHeight){
     this->isJustEatGuppy= false;
 }
 

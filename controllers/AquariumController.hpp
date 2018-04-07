@@ -25,7 +25,7 @@ class AquariumController {
          * @param {int} height of aquarium
          * @param {int} width of aquarium
          */
-        AquariumController(int height, int width);
+        AquariumController(int width, int height);
         
         /**
          * Destruct with Delete all LinkedList

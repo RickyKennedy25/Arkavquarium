@@ -52,7 +52,7 @@ class Fish {
          * Set orientation according to destination
          * Set eatCounter to zero
          */
-        Fish();
+        Fish(int maxWidth, int maxHeight);
         
         /**
          * Getter  

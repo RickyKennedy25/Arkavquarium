@@ -21,7 +21,7 @@ class Guppy : public Fish {
          * Construct Guppy
          * Set produceCoinTimer to 0
          */
-        Guppy();
+        Guppy(int maxWidth, int maxHeight);
         
         /**
          * Modulo produceCoinTimer with PRODUCE_COIN_PERIOD
