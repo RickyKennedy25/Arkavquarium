@@ -67,29 +67,23 @@ void LinkedList<Type>::add(Type element) {
 template<class Type>
 void LinkedList<Type>::remove(Type element) {
     int count = 0;
-    LinkedListItem<Type> *TempLinkedListItem;
+    LinkedListItem<Type> *item;
 
-    TempLinkedListItem = this->first;
+    item = this->first;
 
-    while (TempLinkedListItem != NULL && TempLinkedListItem->getContent() != element) {
-        TempLinkedListItem = TempLinkedListItem->getNext();
+    while (item != NULL && item->getContent() != element) {
+        item = item->getNext();
     }
 
-    if (TempLinkedListItem != NULL) {
-        LinkedListItem<Type> *Prev = TempLinkedListItem->getPrev();
-        LinkedListItem<Type> *Next = TempLinkedListItem->getNext();
+    if (item != NULL) {
+        LinkedListItem<Type> *prev = item->getPrev();
+        LinkedListItem<Type> *next = item->getNext();
 
-        if(Prev == NULL) {
-            this->first = TempLinkedListItem->getNext();
-        } else {
-            Prev->setNext(Next);
-        }
+        if (prev == NULL) { this->first = next; }
+        else { prev->setNext(next); }
 
-        if (Next == NULL){
-            this->last = TempLinkedListItem->getPrev();
-        } else {
-            Next->setPrev(Prev);
-        }
+        if (next == NULL) { this->last = prev; }
+        else { next->setPrev(prev); }
     }
 }
 

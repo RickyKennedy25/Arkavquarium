@@ -149,7 +149,7 @@ void AquariumController::draw() {
     LinkedListItem<Guppy*>* guppyIt;
     guppyIt = Data::getGuppies()->getFirstItem();
     while (guppyIt != NULL) {
-        std::cout << guppyIt->getContent()->getPosition()->getAbsis() << std::endl;/*
+        std::cout << guppyIt->getContent() << std::endl;/*
         this->tank->draw_image(
             Guppy::getAssetPath(),
             guppyIt->getContent()->getPosition()->getAbsis(),
