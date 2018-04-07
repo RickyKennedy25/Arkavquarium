@@ -15,23 +15,19 @@ LinkedList<Type>::LinkedList() {
 
 /**
  * Find particular element in LinkedList
- * @param {LinkedListItem<Type>} element to find
+ * @param {Type} element to find
  * @return {int} index of element
  */
 template<class Type>
-int LinkedList<Type>::find(LinkedListItem<Type> element) {
+int LinkedList<Type>::find(Type element) {
     int count = 0;
     bool found = false;
-    LinkedListItem<Type> *TempLinkedListItem;
+    LinkedListItem<Type> *item;
 
-    TempLinkedListItem = this->first;
-    while (TempLinkedListItem != NULL && !found) {
-        if (TempLinkedListItem->getContent() == element.getContent()) {
-            found = true;
-        } else {
-            TempLinkedListItem = TempLinkedListItem->getNext();
-            count++;
-        }
+    item = this->first;
+    while (item != NULL && !found) {
+        if (item->getContent() == element) { found = true; }
+        else { item = item->getNext(); count++; }
     }
     return count;
 }
@@ -41,7 +37,7 @@ int LinkedList<Type>::find(LinkedListItem<Type> element) {
  */
 template<class Type>
 bool LinkedList<Type>::isEmpty() {
-    return this->first != NULL || this->last != NULL;
+    return this->first == NULL && this->last == NULL;
 }
 
 /**
@@ -53,10 +49,11 @@ void LinkedList<Type>::add(Type element) {
     LinkedListItem<Type> *newItem;
 
     newItem = new LinkedListItem<Type>(element);
-    newItem->setNext(this->first);
-    this->first = newItem;
-    if (this->last == NULL) {
-        this->last = newItem;
+    newItem->setPrev(this->last);
+    if (this->last != NULL) { this->last->setNext(newItem); }
+    this->last = newItem;
+    if (this->first == NULL) {
+        this->first = newItem;
     }
 }
     
@@ -66,7 +63,6 @@ void LinkedList<Type>::add(Type element) {
  */
 template<class Type>
 void LinkedList<Type>::remove(Type element) {
-    int count = 0;
     LinkedListItem<Type> *item;
 
     item = this->first;
@@ -89,6 +85,7 @@ void LinkedList<Type>::remove(Type element) {
 
 /**
  * @param {int} Element index, must less than sizeof LinkedList
+ * index zero base
  * @return {Type} i-th element in the LinkedList
  */
 template <class Type>
@@ -106,7 +103,6 @@ LinkedListItem<Type>* LinkedList<Type>::getItemAt(int index) {
     int i = 0;
 
     item = this->first;
-
     while (i < index && item != this->last) {
         item = item->getNext();
         i++;

@@ -7,7 +7,7 @@ int testDataGuppies() {
     itTestUnit("add data to guppies");
     Data::getGuppies()->add(new Guppy());
 
-    if (Data::getGuppies()->isEmpty()) { itSuccess(); }
+    if (!Data::getGuppies()->isEmpty()) { itSuccess(); }
     else { itFailed(); countFail++; }
 
     Data::clear();
@@ -20,7 +20,7 @@ int testDataPiranhas() {
     itTestUnit("add data to piranhas");
     Data::getPiranhas()->add(new Piranha());
 
-    if (Data::getPiranhas()->isEmpty()) { itSuccess(); }
+    if (!Data::getPiranhas()->isEmpty()) { itSuccess(); }
     else { itFailed(); countFail++; }
 
     Data::clear();

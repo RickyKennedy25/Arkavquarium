@@ -20,7 +20,7 @@ class LinkedList {
          * @param {LinkedListItem<Type>} element to find
          * @return {int} index of element
          */
-        int find(LinkedListItem<Type> element);
+        int find(Type element);
 
         /**
          * @return {bool} LinkedList is empty
