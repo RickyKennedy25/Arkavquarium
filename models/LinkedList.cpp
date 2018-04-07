@@ -41,7 +41,7 @@ int LinkedList<Type>::find(LinkedListItem<Type> element) {
  */
 template<class Type>
 bool LinkedList<Type>::isEmpty() {
-    return this->first != NULL || this->last != NULL;
+    return this->first == NULL && this->last == NULL;
 }
 
 /**
@@ -53,10 +53,10 @@ void LinkedList<Type>::add(Type element) {
     LinkedListItem<Type> *newItem;
 
     newItem = new LinkedListItem<Type>(element);
-    newItem->setNext(this->first);
-    this->first = newItem;
-    if (this->last == NULL) {
-        this->last = newItem;
+    newItem->setPrev(this->last);
+    this->last = newItem;
+    if (this->first == NULL) {
+        this->first = newItem;
     }
 }
     
@@ -66,7 +66,6 @@ void LinkedList<Type>::add(Type element) {
  */
 template<class Type>
 void LinkedList<Type>::remove(Type element) {
-    int count = 0;
     LinkedListItem<Type> *TempLinkedListItem;
 
     TempLinkedListItem = this->first;
@@ -95,6 +94,7 @@ void LinkedList<Type>::remove(Type element) {
 
 /**
  * @param {int} Element index, must less than sizeof LinkedList
+ * index zero base
  * @return {Type} i-th element in the LinkedList
  */
 template <class Type>
