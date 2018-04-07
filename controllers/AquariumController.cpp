@@ -6,25 +6,19 @@
  * @param {int} height of aquarium
  * @param {int} width of aquarium
  */
-AquariumController::AquariumController(int height=600, int width=800) {
-    this->guppies = new LinkedList<Guppy*>();
-    this->piranhas = new LinkedList<Piranha*>();
-    this->foods = new LinkedList<Food*>();
-    this->coins = new LinkedList<Coin*>();
-
-    Guppy* guppy1 = new Guppy();
-    this->guppies->add(guppy1);
-
-    Guppy* guppy2 = new Guppy();
-    this->guppies->add(guppy2);
-
-    Piranha* piranha = new Piranha();
-    this->piranhas->add(piranha);
-
-    this->snail = new Snail();
+AquariumController::AquariumController(int width, int height) {
 
     this->height = height;
     this->width = width;
+
+    Guppy* guppy1 = new Guppy(this->width, this->height);
+    Data::getGuppies()->add(guppy1);
+
+    Guppy* guppy2 = new Guppy(this->width, this->height);
+    Data::getGuppies()->add(guppy2);
+
+    Piranha* piranha = new Piranha(this->width, this->height);
+    Data::getPiranhas()->add(piranha);
 
     this->tank = new Tank(this->width, this->height);
     this->tank->init();
@@ -94,6 +88,8 @@ bool AquariumController::main(double elapsedSeconds) {
     }
     if (!stillRunning) return false;
 
+    this->draw();
+
     return true;
 }
 
@@ -147,7 +143,19 @@ void AquariumController::moveObjects() {
  */
 void AquariumController::draw() {
     this->tank->clear_screen();
-    this->tank->draw_text("Panah untuk bergerak, r untuk reset, x untuk keluar", 18, 10, 10, 0, 0, 0);
-    //this->tank.draw_image("assets/ikan.png", cx, cy);
+    //this->tank->draw_text("Panah untuk bergerak, r untuk reset, x untuk keluar", 18, 10, 10, 0, 0, 0);
+    this->tank->draw_image("assets/img/Tanks.jpg",this->width/2,this->height/2);
+
+    LinkedListItem<Guppy*>* guppyIt;
+    guppyIt = Data::getGuppies()->getFirstItem();
+    while (guppyIt != NULL) {
+        this->tank->draw_image(
+            Guppy::getAssetPath(),
+            guppyIt->getContent()->getPosition()->getAbsis(),
+            guppyIt->getContent()->getPosition()->getOrdinate()
+        );
+        guppyIt = guppyIt->getNext();
+    }
+
     this->tank->update_screen();
 }

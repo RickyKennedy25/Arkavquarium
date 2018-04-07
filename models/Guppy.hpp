@@ -1,26 +1,27 @@
 #ifndef GUPPY_HPP
 #define GUPPY_HPP
 
+#include <iostream>
 #include "Fish.hpp"
 
 class Guppy : public Fish {
     private:
         /**
          * Period time for Guppy producing coin
-         * @todo set constant
          */
-       const int PRODUCE_COIN_PERIOD =5;
+        const static double PRODUCE_COIN_PERIOD;
+        const static std::string assetPath;
         /**
          * Timer for producing coin
          * Updated every update method is called
          */
-       int produceCoinTimer;
+       double produceCoinTimer;
     public:
         /**
          * Construct Guppy
          * Set produceCoinTimer to 0
          */
-        Guppy();
+        Guppy(int maxWidth, int maxHeight);
         
         /**
          * Modulo produceCoinTimer with PRODUCE_COIN_PERIOD
@@ -35,6 +36,11 @@ class Guppy : public Fish {
          * Otherwise move to destination
          */
         void update();
+
+        /**
+         * @return {std::string} asset path
+         */
+        static std::string getAssetPath();
 };
 
 #endif

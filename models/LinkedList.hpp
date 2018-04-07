@@ -20,7 +20,7 @@ class LinkedList {
          * @param {LinkedListItem<Type>} element to find
          * @return {int} index of element
          */
-        int find(LinkedListItem<Type> element);
+        int find(Type element);
 
         /**
          * @return {bool} LinkedList is empty
@@ -28,7 +28,7 @@ class LinkedList {
         bool isEmpty();
 
         /**
-         * Adds a new LinkedListItem
+         * Adds a new LinkedListItem to front of list
          * @param {LinkedListItem<Type>} elemenet
          */
         void add(Type element);
@@ -38,24 +38,42 @@ class LinkedList {
          * @param {LinkedListItem<Type>} element to delete
          */
         void remove(Type element);
-        
+
         /**
          * @param {int} Element index, must less than sizeof LinkedList
-         * @return {LinkedListItem<Type>} i-th element in the LinkedList
+         * @return {Type} i-th element in the LinkedList
          */
-        Type get(int index);
-        
+        Type getContentAt(int index);
+
+        /**
+         * @param {int} Element index, must less than sizeof LinkedList
+         * @return {LinkedListItem<Type>*} i-th item in the LinkedList
+         */
+        LinkedListItem<Type>* getItemAt(int index);
+
         /**
          * The List is not empty
-         * @return {LinkedListItem} first LinkedListItem
+         * @return {Type} content of first LinkedListItem
          */
-        Type getFirst();
-        
+        Type getFirstContent();
+
         /**
          * The List is not empty
-         * @return {LinkedListItem} last LinkedListItem
+         * @return {LinkedListItem<Type>*} first LinkedListItem
          */
-        Type getLast();
+        LinkedListItem<Type>* getFirstItem();
+
+        /**
+         * The List is not empty
+         * @return {Type} content of last LinkedListItem
+         */
+        Type getLastContent();
+
+        /**
+         * The List is not empty
+         * @return {LinkedListItem<Type>*} last LinkedListItem
+         */
+        LinkedListItem<Type>* getLastItem();
 };
 
 #include "LinkedList.cpp"

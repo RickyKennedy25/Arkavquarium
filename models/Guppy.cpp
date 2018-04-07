@@ -1,11 +1,14 @@
 #include "Guppy.hpp"
 
+const double Guppy::PRODUCE_COIN_PERIOD = 5;
+const std::string Guppy::assetPath = "assets/img/guppy.png";
+
 /**
  * Construct Guppy
  * Set produceCoinTimer to 0
  */
-Guppy::Guppy() {
-    //
+Guppy::Guppy(int maxWidth, int maxHeight) : Fish::Fish(maxWidth, maxHeight) {
+    this->produceCoinTimer =0;
 }
 
 /**
@@ -13,15 +16,19 @@ Guppy::Guppy() {
  * @return {bool} PRODUCE_COIN_PERIOD == produceCoinTimer before edited
  */
 bool Guppy::isProduceCoin() {
-    return true;
+    return this->produceCoinTimer==PRODUCE_COIN_PERIOD;
 }
 
 /**
  * Increment produceCoinTimer
- * If isStarving, move Guppy to nearest food
- * If position is equal destination, random new destination
- * Otherwise move to destination
  */
 void Guppy::update() {
-    //
+    this->produceCoinTimer++;
+}
+
+/**
+ * @return {std::string} asset path
+ */
+std::string Guppy::getAssetPath() {
+    return Guppy::assetPath;
 }

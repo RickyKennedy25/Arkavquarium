@@ -16,7 +16,7 @@ double time_since_start()
 
 int main( int argc, char* args[] )
 {
-    AquariumController *aquarium = new AquariumController(600, 800);
+    AquariumController *aquarium = new AquariumController(800, 600);
 
     bool running = true;
     double prevtime = time_since_start();

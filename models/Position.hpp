@@ -6,70 +6,80 @@ class Position {
         /**
          * Absis of the Position
          */
-        int x;
+        double x;
         
         /**
          * Ordinate of the Position
          */
-        int y;
+        double y;
         
     public:
-        /**
-         * Construct Position with random x and y
-         */
-        Position();
 
         /**
          * Construct Position with x and y
-         * @param {int} absis of Position
-         * @param {int} ordinate of Position
+         * @param {double} absis of Position
+         * @param {double} ordinate of Position
          */
-        Position(int x, int y);
+        Position(double x, double y, bool random=false);
         
         /**
-         * @return {int} absis of the position
+         * @return {double} absis of the position
          */
-        int getAbsis() const;
+        double getAbsis() const;
 
         /**
-         * @return {int} ordinate of the position
+         * @return {double} ordinate of the position
          */
-        int getOrdinate() const;
+        double getOrdinate() const;
 
         /**
          * set absis of the position
-         * @param {int} absis of Position
+         * @param {double} absis of Position
          */
-        void setAbsis (int x);
+        void setAbsis (double x);
         
         /**
          * set ordinate of the position
-         * @param {int} ordinate of Position
+         * @param {double} ordinate of Position
          */
-        void setOrdinate(int y);
+        void setOrdinate(double y);
         
         /**
          * Set x and y to random
          */
-        void random();
-        
+        void random(int maxHeight, int maxWidth);
+
         /**
          * Set x and y to nearest coordinate with dest
          * but no more than pythagorean distance maxVelocity
          */
-        void move(Position dest, int maxVelocity);
-        
+        void move(Position dest, double maxVelocity);
+
         /**
          * Set x to nearest coordinate with dest
          * but no more than pythagorean distance maxVelocity
          */
-        void moveHorizontal(Position dest, int maxVelocity);
+        void moveHorizontal(Position dest, double maxVelocity);
         
         /**
          * Set y to nearest coordinate with dest
          * but no more than pythagorean distance maxVelocity
          */
-        void moveVertical(Position dest,int maxVelocity);
+        void moveVertical(Position dest,double maxVelocity);
+
+        /**
+         * compare this position with comp
+         * if equal return true
+         * else return false 
+         */
+        bool operator==(Position comp);
+
+        /**
+         * compare this position with comp
+         * if notequal return true
+         * else return false 
+         */
+        bool operator!=(Position comp);
 };
 
 

@@ -3,8 +3,8 @@
 #include <iostream>
 
 Tank::Tank(int width, int height) {
-    this->width = 640;
-    this->height = 480;
+    this->width = width;
+    this->height = height;
 
     this->sdlWindow = NULL;
     this->gScreenSurface = NULL;
@@ -102,7 +102,7 @@ void Tank::clear_screen() {
 }
 
 void Tank::update_screen() {
-    SDL_UpdateWindowSurface(sdlWindow);
+    SDL_UpdateWindowSurface(this->sdlWindow);
 }
 
 void Tank::handle_input() {

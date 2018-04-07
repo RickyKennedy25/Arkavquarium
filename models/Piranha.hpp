@@ -14,7 +14,7 @@ class Piranha : public Fish {
         /**
          * Construct Piranha with isJustEatGuppy as False
          */
-        Piranha();
+        Piranha(int maxWidth, int maxHeight);
         
         /**
          * Set isJustEatGuppy to false
