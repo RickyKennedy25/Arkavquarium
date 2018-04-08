@@ -17,14 +17,14 @@ Fish::Fish(int maxWidth, int maxHeight) {
 	this->destination = new Position(maxWidth, maxHeight, true);
 	this->growthStep = GrowthStep::GROWTH_STEP_ONE;
 	this->starvingTimer = 0;
-	this->orientation = (this->destination.x > this->position.x) ? Orientation::ORIENTATION_RIGHT : Orientation::ORIENTATION_LEFT;
+	this->orientation = (this->destination->getAbsis() > this->position->getAbsis()) ? Orientation::ORIENTATION_RIGHT : Orientation::ORIENTATION_LEFT;
 	this->eatCounter = 0;
 }
 
 /**
  * Getter  
  */
-Status Fish::getStatus() const {
+int Fish::getStatus() const {
     return this->status;
 }
 
@@ -33,18 +33,18 @@ Position* Fish::getPosition() const {
 }
 
 Position* Fish::getDestination() const {
-    return this->destinantion;
+    return this->destination;
 }
 
-GrowthStep Fish::getGrowthStep() const {
-    return this->GrowthStep;
+int Fish::getGrowthStep() const {
+    return this->growthStep;
 }
 
 int Fish::getStarvingTimer() const {
-    return this->starvingTime;
+    return this->starvingTimer;
 }
 
-Orientation Fish::getOrientation() const {
+int Fish::getOrientation() const {
     return this->orientation;
 }
 
@@ -55,7 +55,7 @@ int Fish::getEatCounter() const {
 /**
  * Setter
  */
-void Fish::setStatus(Status status) {
+void Fish::setStatus(int status) {
     this->status = status;
 }
 
@@ -67,7 +67,7 @@ void Fish::setDestination(Position* position) {
     this->destination = position;
 }
 
-void Fish::setGrowthStep(GrowthStep growthStep) {
+void Fish::setGrowthStep(int growthStep) {
     this->growthStep = growthStep;
 }
 
@@ -75,7 +75,7 @@ void Fish::setStarvingTimer(int starvingTimer) {
     this->starvingTimer = starvingTimer;
 }
 
-void Fish::setOrientation(Orientation orientation) {
+void Fish::setOrientation(int orientation) {
     this->orientation = orientation;
 }
 
@@ -105,7 +105,7 @@ void Fish::eat() {
  *   or nearest Guppy for Piranha
  */
 void Fish::moveToDestination(Position* position) {
-	this->position.move(position, MAX_VELOCITY); 
+	this->position->move(*position, MAX_VELOCITY); 
 }
 
 /**
@@ -115,6 +115,6 @@ void Fish::moveToDestination(Position* position) {
  */
 void Fish::moveToDestination() {
     if(this->position == this->destination)
-	    this->destination = new Position(0, 0, true);
-    this->position.move(this->destination, MAX_VELOCITY);
+	    this->destination = new Position(500, 500, true);
+    this->position->move(*this->destination, MAX_VELOCITY);
 }

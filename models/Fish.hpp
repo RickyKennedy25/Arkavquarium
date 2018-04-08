@@ -60,12 +60,12 @@ class Fish {
         /**
          * Setter
          */
-        void setStatus(Status status);
+        void setStatus(int status);
         void setPosition(Position* position);
         void setDestination(Position* position);
-        void setGrowthStep(GrowthStep growthStep);
+        void setGrowthStep(int growthStep);
         void setStarvingTimer(int starvingTimer);
-        void setOrientation(Orientation orientation);
+        void setOrientation(int orientation);
               
         virtual bool isProduceCoin()=0;
         
