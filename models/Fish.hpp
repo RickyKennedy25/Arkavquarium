@@ -2,20 +2,12 @@
 #define FISH_HPP
 
 #include "Position.hpp"
-
-#define Orientation int
-#define GrowthStep int
-#define Status int
+#include "Orientation.hpp"
+#include "GrowthStep.hpp"
+#include "Status.hpp"
 
 class Fish {
     protected:
-        static const int STATUS_IDLE = 1;
-        static const int STATUS_STARVING = 2;
-        static const int GROWTH_STEP_ONE = 3;
-        static const int GROWTH_STEP_TWO = 4;
-        static const int GROWTH_STEP_THREE = 5;
-        static const int ORIENTATION_LEFT = 6;
-        static const int ORIENTATION_RIGHT = 7;
         static const int MAX_VELOCITY = 6;
         /**
          * Time from Fish eat until starving
@@ -36,8 +28,8 @@ class Fish {
          * Destination of Fish when Fish is idle
          */
         Position* destination;
-        GrowthStep growthStep;
-        Orientation orientation;
+        int growthStep;
+        int orientation;
         int starvingTimer;
         int eatCounter;
         
