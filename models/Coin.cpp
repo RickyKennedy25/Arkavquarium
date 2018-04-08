@@ -6,7 +6,7 @@
  * assume value less than 10
  */
 Coin::Coin() {
-    this->position = new Position(600,800,true); //Sementara perlu parameter maxWidth dan parameter maxHeight
+    this->position = new Position(800,600,true); //Sementara perlu parameter maxWidth dan parameter maxHeight
     this->value = rand() %10; 
 }
 

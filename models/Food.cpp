@@ -5,7 +5,8 @@
  * Construct Food at random position and 0 ordinate
  */
 Food::Food() {
-    //
+    this->position = new Position(800,600,true);
+    this->position->setOrdinate(0);
 }
 
 /**
@@ -13,7 +14,7 @@ Food::Food() {
  * @param {int} absis position
  */
 Food::Food(int x) {
-    //
+    this->position = new Position(x, 0);
 }
 
 /**
@@ -21,12 +22,12 @@ Food::Food(int x) {
  * @param {Positon} destination
  */
 void Food::move(Position* dest) {
-    //
+    this->position->moveVertical(*dest,(double)MAX_VELOCITY);
 }
 
 /**
  * @return {Position*} Food Position 
  **/
 Position* Food::getPosition() {
-    return NULL;
+    return this->position;
 }
