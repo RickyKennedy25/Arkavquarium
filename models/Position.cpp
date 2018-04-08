@@ -2,10 +2,13 @@
 
 using namespace std;
 
+int Position::seed = 0;
+
 /**
  * Construct Position with x and y
  * @param {double} absis of Position
  * @param {double} ordinate of Position
+ * @param {bool} will the new position be random
  */
 Position::Position(double x, double y , bool _random) {
     if (_random) {
@@ -51,22 +54,16 @@ void Position::setOrdinate(double y) {
  * Set x and y to random
  */
 void Position::random(int maxWidth, int maxHeight) {
-    time_t timer;
-    this->delayOneSecond(1);
-    time(&timer);
-    // cout << timer << endl;
-    // cout << "timer adalah " << timer << endl;
-    srand(timer);
+    srand(Position::seed++);
     int pad = maxWidth * 15 / 100;
     this->x = (rand() % (maxWidth - 2 * pad)) + pad;
     this->y = rand() % maxHeight;
 }
     /**
- * Set x and y to nearest coordinate with dest
- * but no more than pythagorean distance maxVelocity
- */
-    void Position::move(Position dest, double maxVelocity)
-    {
+     * Set x and y to nearest coordinate with dest
+     * but no more than pythagorean distance maxVelocity
+     */
+    void Position::move(Position dest, double maxVelocity) {
         double LenV;
         double Vx, Vy;
         double Dx, Dy;
@@ -122,19 +119,4 @@ bool Position::operator==(Position comp) {
  */
 bool Position::operator!=(Position comp){
     return this->x != comp.getAbsis() || this->y != comp.getOrdinate();
-}
-
-void Position::delayOneSecond(int seconds)
-{
-    time_t time0; // create timers.
-    time_t time1;
-
-    time(&time0); // get current time.
-    double s = 0;
-    do
-    {
-        time(&time1);
-        s = time1 - time0;
-    } while (s < seconds);
-
 }

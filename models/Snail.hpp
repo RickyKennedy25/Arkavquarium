@@ -11,8 +11,10 @@ class Snail {
     public:
         /**
          * Construct Snail with random position
+         * @param {int} screen width
+         * #param {int} screen height
          */
-        Snail();
+        Snail(int maxWidth, int maxHeight);
         
         /**
          * Returns the snail position

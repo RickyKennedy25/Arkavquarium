@@ -12,19 +12,21 @@
  * Set eatCounter to zero
  */
 Fish::Fish(int maxWidth, int maxHeight) {
-	this->status = Status::STATUS_IDLE;
+	this->status = idle;
     this->position = new Position(maxWidth, maxHeight, true);
 	this->destination = new Position(maxWidth, maxHeight, true);
-	this->growthStep = GrowthStep::GROWTH_STEP_ONE;
+	this->growthStep = stepOne;
 	this->starvingTimer = 0;
-	this->orientation = (this->destination.x > this->position.x) ? Orientation::ORIENTATION_RIGHT : Orientation::ORIENTATION_LEFT;
+	this->orientation =
+        (this->destination->getAbsis() > this->position->getAbsis()) ?
+            right : left;
 	this->eatCounter = 0;
 }
 
 /**
  * Getter  
  */
-Status Fish::getStatus() const {
+tStatus Fish::getStatus() const {
     return this->status;
 }
 
@@ -33,18 +35,18 @@ Position* Fish::getPosition() const {
 }
 
 Position* Fish::getDestination() const {
-    return this->destinantion;
+    return this->destination;
 }
 
-GrowthStep Fish::getGrowthStep() const {
-    return this->GrowthStep;
+tGrowthStep Fish::getGrowthStep() const {
+    return this->growthStep;
 }
 
 int Fish::getStarvingTimer() const {
-    return this->starvingTime;
+    return this->starvingTimer;
 }
 
-Orientation Fish::getOrientation() const {
+tOrientation Fish::getOrientation() const {
     return this->orientation;
 }
 
@@ -55,7 +57,7 @@ int Fish::getEatCounter() const {
 /**
  * Setter
  */
-void Fish::setStatus(Status status) {
+void Fish::setStatus(tStatus status) {
     this->status = status;
 }
 
@@ -67,7 +69,7 @@ void Fish::setDestination(Position* position) {
     this->destination = position;
 }
 
-void Fish::setGrowthStep(GrowthStep growthStep) {
+void Fish::setGrowthStep(tGrowthStep growthStep) {
     this->growthStep = growthStep;
 }
 
@@ -75,7 +77,7 @@ void Fish::setStarvingTimer(int starvingTimer) {
     this->starvingTimer = starvingTimer;
 }
 
-void Fish::setOrientation(Orientation orientation) {
+void Fish::setOrientation(tOrientation orientation) {
     this->orientation = orientation;
 }
 
@@ -92,10 +94,10 @@ bool Fish::isStarving() {
  */
 void Fish::eat() {
     this->eatCounter++;
-	if(this->eatCounter == FIRST_GROWTH_EAT_COUNTER)
-			this->growthStep = GrowthStep::GROWTH_STEP_TWO;
+	if (this->eatCounter == FIRST_GROWTH_EAT_COUNTER)
+		this->growthStep = stepTwo;
 	else if(this->eatCounter == SECOND_GROWTH_EAT_COUNTER)
-			this->growthStep = GrowthStep::GROWTH_STEP_THREE;
+		this->growthStep = stepThree;
 }
 
 
@@ -105,7 +107,7 @@ void Fish::eat() {
  *   or nearest Guppy for Piranha
  */
 void Fish::moveToDestination(Position* position) {
-	this->position.move(position, MAX_VELOCITY); 
+	this->position->move(*position, MAX_VELOCITY); 
 }
 
 /**
@@ -113,8 +115,8 @@ void Fish::moveToDestination(Position* position) {
  * If Fish Position equal to default destination
  * random new destination 
  */
-void Fish::moveToDestination() {
+void Fish::moveToDestination(int maxWidth, int maxHeight) {
     if(this->position == this->destination)
-	    this->destination = new Position(0, 0, true);
-    this->position.move(this->destination, MAX_VELOCITY);
+	    this->destination = new Position(maxWidth, maxHeight, true);
+    this->position->move(*this->destination, MAX_VELOCITY);
 }

@@ -20,6 +20,9 @@ AquariumController::AquariumController(int width, int height) {
     Piranha* piranha = new Piranha(this->width, this->height);
     Data::getPiranhas()->add(piranha);
 
+    Snail* snail = new Snail(this->width, this->height);
+    Data::setSnail(snail);
+
     this->tank = new Tank(this->width, this->height);
     this->tank->init();
 }

@@ -49,6 +49,11 @@ class Data {
         static Snail* getSnail();
 
         /**
+         * @param {Snail*} new snail
+         */
+        static void setSnail(Snail* snail);
+
+        /**
          * Destruct all linked list and create new
          */
         static void clear();

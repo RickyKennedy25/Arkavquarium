@@ -5,7 +5,7 @@ LinkedList<Guppy*>* Data::guppies = new LinkedList<Guppy*>();
 LinkedList<Piranha*>* Data::piranhas = new LinkedList<Piranha*>();
 LinkedList<Food*>* Data::foods = new LinkedList<Food*>();
 LinkedList<Coin*>* Data::coins = new LinkedList<Coin*>();
-Snail* Data::snail = new Snail();
+Snail* Data::snail = NULL;
 
 /**
  * Do Nothing
@@ -46,6 +46,13 @@ LinkedList<Coin*>* Data::getCoins() {
 Snail* Data::getSnail() {
     return Data::snail;
 }
+/**
+ * @param {Snail*} new snail
+ */
+void Data::setSnail(Snail* snail) {
+    delete Data::snail;
+    Data::snail = snail;
+}
 
 /**
  * Destruct all linked list and create new
@@ -61,5 +68,5 @@ void Data::clear() {
     Data::piranhas = new LinkedList<Piranha*>();
     Data::foods = new LinkedList<Food*>();
     Data::coins = new LinkedList<Coin*>();
-    Data::snail = new Snail();
+    Data::snail = NULL;
 }

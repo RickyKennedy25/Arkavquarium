@@ -1,4 +1,4 @@
-.vscode
-*/*.gch
-bin/*
+.*
+**.gch
+bin/
 !bin/.gitkeep

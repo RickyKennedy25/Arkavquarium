@@ -2,9 +2,13 @@
 #define FISH_HPP
 
 #include "Position.hpp"
-#include "Orientation.hpp"
-#include "GrowthStep.hpp"
-#include "Status.hpp"
+//#include "Orientation.hpp"
+//#include "GrowthStep.hpp"
+//#include "Status.hpp"
+
+enum tStatus { starving, idle };
+enum tOrientation { left, right };
+enum tGrowthStep { stepOne, stepTwo, stepThree };
 
 class Fish {
     protected:
@@ -22,14 +26,14 @@ class Fish {
         static const int FIRST_GROWTH_EAT_COUNTER = 7;
         static const int SECOND_GROWTH_EAT_COUNTER = 15;
 
-        int status;
+        tStatus status;
         Position* position;
         /**
          * Destination of Fish when Fish is idle
          */
         Position* destination;
-        int growthStep;
-        int orientation;
+        tGrowthStep growthStep;
+        tOrientation orientation;
         int starvingTimer;
         int eatCounter;
         
@@ -49,23 +53,23 @@ class Fish {
         /**
          * Getter  
          */
-        int getStatus() const;
+        tStatus getStatus() const;
         Position* getPosition() const;
         Position* getDestination() const;
-        int getGrowthStep() const;
+        tGrowthStep getGrowthStep() const;
         int getStarvingTimer() const;
-        int getOrientation() const;
+        tOrientation getOrientation() const;
         int getEatCounter() const;
 
         /**
          * Setter
          */
-        void setStatus(Status status);
+        void setStatus(tStatus status);
         void setPosition(Position* position);
         void setDestination(Position* position);
-        void setGrowthStep(GrowthStep growthStep);
+        void setGrowthStep(tGrowthStep growthStep);
         void setStarvingTimer(int starvingTimer);
-        void setOrientation(Orientation orientation);
+        void setOrientation(tOrientation orientation);
               
         virtual bool isProduceCoin()=0;
         
@@ -92,7 +96,7 @@ class Fish {
          * If Fish Position equal to default destination
          * random new destination 
          */
-        void moveToDestination();
+        void moveToDestination(int maxWidth, int maxHeight);
 };
 
 #endif

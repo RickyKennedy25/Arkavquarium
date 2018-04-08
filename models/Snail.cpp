@@ -4,8 +4,8 @@
 /**
  * Construct Snail with random position
  */
-Snail::Snail() {
-   this->position = new Position(0, 0, true);
+Snail::Snail(int maxWidth, int maxHeight) {
+   this->position = new Position(maxWidth, maxHeight, true);
 }
 
 /**
@@ -20,5 +20,5 @@ Position* Snail::getPosition() const {
  * @param {Position} destination
  */
 void Snail::moveToDestination(Position position) {
-    this->position.move(position, MAX_VELOCITY);
+    this->position->move(position, MAX_VELOCITY);
 }

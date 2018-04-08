@@ -138,14 +138,22 @@ int testPositionEqual() {
 
 int testPositionRandom() {
     int countFail = 0;
-    Position *p;;
+    Position *p1, *p2;
 
     itTestUnit("randomizing position");
-    p = new Position(20, 30);
-    p->random(10, 10);
-    if (p->getAbsis() <= 10 && p->getOrdinate() <= 10) { itSuccess(); }
+    p1 = new Position(10, 3000);
+    p1->random(10, 10);
+    if (p1->getAbsis() <= 10 && p1->getOrdinate() <= 3000) { itSuccess(); }
     else { itFailed(); countFail++; }
-    delete p;
+    delete p1;
+
+    itTestUnit("random should create new random, not equal to previous");
+    p1 = new Position(2000, 3000, true);
+    p2 = new Position(2000, 3000, true);
+    if (p1->getAbsis() != p2->getAbsis() && p1->getOrdinate() != p2->getOrdinate()) { itSuccess(); }
+    else { itFailed(); countFail++; }
+    delete p1;
+    delete p2;
 
     return countFail;
 }
