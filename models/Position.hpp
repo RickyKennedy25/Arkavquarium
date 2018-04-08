@@ -1,6 +1,11 @@
 #ifndef POSITION_HPP
 #define POSITION_HPP
 
+#include <stdlib.h>
+#include <math.h>
+#include <algorithm>
+#include <iostream>
+
 class Position
 {
   private:

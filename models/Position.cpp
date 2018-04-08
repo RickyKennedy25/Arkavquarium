@@ -1,8 +1,4 @@
 #include "Position.hpp"
-#include <stdlib.h>
-#include <math.h>
-#include <algorithm>
-#include <iostream>
 
 using namespace std;
 
