@@ -11,8 +11,8 @@ using namespace std;
  * @param {double} absis of Position
  * @param {double} ordinate of Position
  */
-Position::Position(double x, double y , bool random) {
-    if (random) {
+Position::Position(double x, double y , bool _random) {
+    if (_random) {
         this->random(x, y);
     } else {
         this->x = x;
@@ -55,27 +55,32 @@ void Position::setOrdinate(double y) {
  * Set x and y to random
  */
 void Position::random(int maxWidth, int maxHeight) {
-    srand(0);
+    time_t timer;
+    this->delayOneSecond(1);
+    time(&timer);
+    // cout << timer << endl;
+    // cout << "timer adalah " << timer << endl;
+    srand(timer);
     int pad = maxWidth * 15 / 100;
     this->x = (rand() % (maxWidth - 2 * pad)) + pad;
     this->y = rand() % maxHeight;
 }
-
-/**
+    /**
  * Set x and y to nearest coordinate with dest
  * but no more than pythagorean distance maxVelocity
  */
-void Position::move(Position dest, double maxVelocity) {
-    double LenV;
-    double Vx,Vy;
-    double Dx,Dy;
-    Vx = dest.getAbsis() - this->getAbsis();
-    Vy = dest.getOrdinate() - this->getOrdinate();
-    LenV = sqrt(pow(Vx, 2) + pow(Vy, 2));
-    Dx = (min(maxVelocity, LenV) / LenV) * Vx;
-    Dy = (min(maxVelocity, LenV) / LenV) * Vy;
-    this->x += Dx;
-    this->y += Dy;
+    void Position::move(Position dest, double maxVelocity)
+    {
+        double LenV;
+        double Vx, Vy;
+        double Dx, Dy;
+        Vx = dest.getAbsis() - this->getAbsis();
+        Vy = dest.getOrdinate() - this->getOrdinate();
+        LenV = sqrt(pow(Vx, 2) + pow(Vy, 2));
+        Dx = (min(maxVelocity, LenV) / LenV) * Vx;
+        Dy = (min(maxVelocity, LenV) / LenV) * Vy;
+        this->x += Dx;
+        this->y += Dy;
 }
 
 /**
@@ -121,4 +126,19 @@ bool Position::operator==(Position comp) {
  */
 bool Position::operator!=(Position comp){
     return this->x != comp.getAbsis() || this->y != comp.getOrdinate();
+}
+
+void Position::delayOneSecond(int seconds)
+{
+    time_t time0; // create timers.
+    time_t time1;
+
+    time(&time0); // get current time.
+    double s = 0;
+    do
+    {
+        time(&time1);
+        s = time1 - time0;
+    } while (s < seconds);
+
 }
