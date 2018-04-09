@@ -9,7 +9,6 @@
 enum tStatus { starving, idle };
 enum tOrientation { left, right };
 enum tGrowthStep { stepOne, stepTwo, stepThree };
-
 class Fish {
     protected:
         static const int MAX_VELOCITY = 6;

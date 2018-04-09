@@ -8,7 +8,7 @@
  * Construct LinkedListItem with content = content, next = NULL, and prev = NULL
  */
 template<class Type>
-LinkedListItem<Type>::LinkedListItem(Type content) {
+LinkedListItem<Type>::LinkedListItem(Type content) { //pointer lli
     this->next = NULL;
     this->prev = NULL;
     this->content = content;
@@ -18,7 +18,7 @@ LinkedListItem<Type>::LinkedListItem(Type content) {
  * @return {Type} Get content of current item
  */
 template<class Type>
-Type LinkedListItem<Type>::getContent() {
+Type LinkedListItem<Type>::getContent() { //pointer lli 
     return this->content;
 }
 
@@ -43,7 +43,7 @@ LinkedListItem<Type>* LinkedListItem<Type>::getNext() {
  * @param {Type} new item content
  */
 template<class Type>
-void LinkedListItem<Type>::setContent(Type content) {
+void LinkedListItem<Type>::setContent(Type content) { //pointer lli
     this->content = content;
 }
 
