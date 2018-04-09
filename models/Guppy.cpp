@@ -8,7 +8,7 @@ const std::string Guppy::assetPath = "assets/img/guppy.png";
  * Set produceCoinTimer to 0
  */
 Guppy::Guppy(int maxWidth, int maxHeight) : Fish::Fish(maxWidth, maxHeight) {
-    this->produceCoinTimer =0;
+    this->produceCoinTimer = 0;
 }
 
 /**
@@ -16,7 +16,7 @@ Guppy::Guppy(int maxWidth, int maxHeight) : Fish::Fish(maxWidth, maxHeight) {
  * @return {bool} PRODUCE_COIN_PERIOD == produceCoinTimer before edited
  */
 bool Guppy::isProduceCoin() {
-    return this->produceCoinTimer==PRODUCE_COIN_PERIOD;
+    return this->produceCoinTimer == PRODUCE_COIN_PERIOD;
 }
 
 /**

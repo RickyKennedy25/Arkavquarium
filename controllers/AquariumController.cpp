@@ -103,33 +103,40 @@ bool AquariumController::main(double elapsedSeconds) {
  * @return {Food*} Food with minimum distance to Guppy
  */
 Food* AquariumController::findNearestFood(Guppy* guppy) {
-    double minDistance,tempDistance;
-    Food *nearestFood,*tempFood;
-    
     LinkedList<Food*> *liFood = Data::getFoods();
-    LinkedListItem<Food*> *liItemFood = liFood->getFirstItem();
-    nearestFood = liItemFood->getContent();
-    minDistance = guppy->getPosition()->magnitude(*(nearestFood->getPosition()));
     
-    while (liItemFood != liFood->getLastItem()){
-    // while (liItemFood->getNext() != NULL){ 
+    if(!(liFood->isEmpty())){
+
+        double minDistance,tempDistance;
+        Food *nearestFood,*tempFood;
+        
+        LinkedListItem<Food*> *liItemFood = liFood->getFirstItem();
+        nearestFood = liItemFood->getContent();
+        minDistance = guppy->getPosition()->magnitude(*(nearestFood->getPosition()));
+        
+        while (liItemFood != liFood->getLastItem()){
+        // while (liItemFood->getNext() != NULL){ 
+            tempFood = liItemFood->getContent();
+            tempDistance = guppy->getPosition()->magnitude(*(tempFood->getPosition()));
+            if(tempDistance < minDistance){
+                minDistance = tempDistance;
+                nearestFood = tempFood;
+            }
+            liItemFood = liItemFood->getNext();
+        }
+        //handle last element
         tempFood = liItemFood->getContent();
         tempDistance = guppy->getPosition()->magnitude(*(tempFood->getPosition()));
         if(tempDistance < minDistance){
             minDistance = tempDistance;
             nearestFood = tempFood;
         }
-        liItemFood = liItemFood->getNext();
+        
+        return nearestFood;
+    } else {
+        return NULL;
     }
-    //handle last element
-    tempFood = liItemFood->getContent();
-    tempDistance = guppy->getPosition()->magnitude(*(tempFood->getPosition()));
-    if(tempDistance < minDistance){
-        minDistance = tempDistance;
-        nearestFood = tempFood;
-    }
-    
-    return nearestFood;
+
     
 }
 
@@ -139,17 +146,30 @@ Food* AquariumController::findNearestFood(Guppy* guppy) {
  * @return {Coin*} Coin with minimum distance to snail
  */
 Coin* AquariumController::findNearestCoin(Snail* snail) {
-    double minDistance, tempDistance;
-    Coin *nearestCoin, *tempCoin;
-
     LinkedList<Coin *> *liCoin = Data::getCoins();
-    LinkedListItem<Coin *> *liItemCoin = liCoin->getFirstItem();
-    nearestCoin = liItemCoin->getContent();
-    minDistance = snail->getPosition()->magnitude(*(nearestCoin->getPosition()));
 
-    while (liItemCoin != liCoin->getLastItem())
-    {
-        // while (liItemFood->getNext() != NULL){
+    if(!(liCoin->isEmpty())){
+
+        double minDistance, tempDistance;
+        Coin *nearestCoin, *tempCoin;
+
+        LinkedListItem<Coin *> *liItemCoin = liCoin->getFirstItem();
+        nearestCoin = liItemCoin->getContent();
+        minDistance = snail->getPosition()->magnitude(*(nearestCoin->getPosition()));
+
+        while (liItemCoin != liCoin->getLastItem())
+        {
+            // while (liItemFood->getNext() != NULL){
+            tempCoin = liItemCoin->getContent();
+            tempDistance = snail->getPosition()->magnitude(*(tempCoin->getPosition()));
+            if (tempDistance < minDistance)
+            {
+                minDistance = tempDistance;
+                nearestCoin = tempCoin;
+            }
+            liItemCoin = liItemCoin->getNext();
+        }
+        //handle last element
         tempCoin = liItemCoin->getContent();
         tempDistance = snail->getPosition()->magnitude(*(tempCoin->getPosition()));
         if (tempDistance < minDistance)
@@ -157,18 +177,11 @@ Coin* AquariumController::findNearestCoin(Snail* snail) {
             minDistance = tempDistance;
             nearestCoin = tempCoin;
         }
-        liItemCoin = liItemCoin->getNext();
-    }
-    //handle last element
-    tempCoin = liItemCoin->getContent();
-    tempDistance = snail->getPosition()->magnitude(*(tempCoin->getPosition()));
-    if (tempDistance < minDistance)
-    {
-        minDistance = tempDistance;
-        nearestCoin = tempCoin;
-    }
 
-    return nearestCoin;
+        return nearestCoin;
+    } else {
+        return NULL;
+    }
 }
 
 /**
@@ -177,17 +190,30 @@ Coin* AquariumController::findNearestCoin(Snail* snail) {
  * @return {Guppy*} Guppy with minimum distance to Piranha
  */
 Guppy* AquariumController::findNearestGuppy(Piranha* piranha) {
-    double minDistance, tempDistance;
-    Guppy *nearestGuppy, *tempGuppy;
-
     LinkedList<Guppy*> *liGuppy = Data::getGuppies();
-    LinkedListItem<Guppy*> *liItemGuppy = liGuppy->getFirstItem();
-    nearestGuppy = liItemGuppy->getContent();
-    minDistance = piranha->getPosition()->magnitude(*(nearestGuppy->getPosition()));
 
-    while (liItemGuppy != liGuppy->getLastItem())
-    {
-        // while (liItemFood->getNext() != NULL){
+    if((liGuppy->isEmpty())){
+
+        double minDistance, tempDistance;
+        Guppy *nearestGuppy, *tempGuppy;
+
+        LinkedListItem<Guppy*> *liItemGuppy = liGuppy->getFirstItem();
+        nearestGuppy = liItemGuppy->getContent();
+        minDistance = piranha->getPosition()->magnitude(*(nearestGuppy->getPosition()));
+
+        while (liItemGuppy != liGuppy->getLastItem())
+        {
+            // while (liItemFood->getNext() != NULL){
+            tempGuppy = liItemGuppy->getContent();
+            tempDistance = piranha->getPosition()->magnitude(*(tempGuppy->getPosition()));
+            if (tempDistance < minDistance)
+            {
+                minDistance = tempDistance;
+                nearestGuppy = tempGuppy;
+            }
+            liItemGuppy = liItemGuppy->getNext();
+        }
+        //handle last element
         tempGuppy = liItemGuppy->getContent();
         tempDistance = piranha->getPosition()->magnitude(*(tempGuppy->getPosition()));
         if (tempDistance < minDistance)
@@ -195,18 +221,11 @@ Guppy* AquariumController::findNearestGuppy(Piranha* piranha) {
             minDistance = tempDistance;
             nearestGuppy = tempGuppy;
         }
-        liItemGuppy = liItemGuppy->getNext();
-    }
-    //handle last element
-    tempGuppy = liItemGuppy->getContent();
-    tempDistance = piranha->getPosition()->magnitude(*(tempGuppy->getPosition()));
-    if (tempDistance < minDistance)
-    {
-        minDistance = tempDistance;
-        nearestGuppy = tempGuppy;
-    }
 
-    return nearestGuppy;
+        return nearestGuppy;
+    } else {
+        return NULL;
+    }
 }
 
 /**
@@ -220,11 +239,76 @@ void AquariumController::produceCoin(Fish fish) {
 /**
  * For every fish, move fish to nearest food if hungry, or to dest
  * For every coin, move coin to ground
- * For every food, move food to food
+ * For every food, move food to ground
  * Move snail to nearest coin
  */
 void AquariumController::moveObjects() {
-    //
+    
+    LinkedList<Coin *> *liCoin = Data::getCoins();
+    LinkedListItem<Coin *> *liItemCoin = liCoin->getFirstItem();
+    Coin* currentCoin;
+
+    while(liItemCoin != NULL){
+        currentCoin = liItemCoin->getContent();
+        currentCoin->move(this->getHeight());
+        liItemCoin = liItemCoin->getNext();
+    }
+
+    LinkedList<Food *> *liFood = Data::getFoods();
+    LinkedListItem<Food *> *liItemFood = liFood->getFirstItem();
+    Food* currentFood;
+    Position* lowerPosition = new Position(this->getWidth(),this->getHeight());
+
+    while(liItemFood != NULL){
+        currentFood = liItemFood->getContent();
+        currentFood->move(lowerPosition);
+        liItemFood = liItemFood->getNext();
+    }
+
+    LinkedList<Guppy*> *liGuppy = Data::getGuppies();
+    LinkedListItem<Guppy*> *liItemGuppy = liGuppy->getFirstItem();
+    Guppy* currentGuppy;
+
+    // while(liItemGuppy != liGuppy->getLastItem()){
+    while(liItemGuppy != NULL){ 
+        currentGuppy = liItemGuppy->getContent();   
+        if(currentGuppy->isStarving()){
+            Food *nearestFood;
+            nearestFood = findNearestFood(currentGuppy);
+            currentGuppy->moveToDestination(nearestFood->getPosition());
+        } else {
+            currentGuppy->moveToDestination(this->getWidth(), this->getHeight());
+        }
+        liItemGuppy = liItemGuppy->getNext();
+    }
+
+    LinkedList<Piranha *> *liPiranha = Data::getPiranhas();
+    LinkedListItem<Piranha *> *liItemPiranha = liPiranha->getFirstItem();
+    Piranha *currentPiranha;
+
+    // while(liItemPiranha != liPiranha->getLastItem()){
+    while (liItemPiranha != NULL)
+    {
+        currentPiranha = liItemPiranha->getContent();
+        if (currentPiranha->isStarving())
+        {
+            Guppy *nearestGuppy;
+            nearestGuppy = findNearestGuppy(currentPiranha);
+            currentPiranha->moveToDestination(nearestGuppy->getPosition());
+        }
+        else
+        {
+            currentPiranha->moveToDestination(this->getWidth(), this->getHeight());
+        }
+        liItemPiranha = liItemPiranha->getNext();
+    }
+
+    Snail *currentSnail = Data::getSnail();
+    Coin *nearestcoin ;
+    if(!(liCoin->isEmpty())){
+        nearestcoin = findNearestCoin(currentSnail);
+        currentSnail->moveToDestination(*(nearestcoin->getPosition()));
+    }
 }
 
 /**
@@ -235,16 +319,16 @@ void AquariumController::draw() {
     //this->tank->draw_text("Panah untuk bergerak, r untuk reset, x untuk keluar", 18, 10, 10, 0, 0, 0);
     this->tank->draw_image("assets/img/Tanks.jpg",this->width/2,this->height/2);
 
-    // LinkedListItem<Guppy*>* guppyIt;
-    // guppyIt = Data::getGuppies()->getFirstItem();
-    // while (guppyIt != NULL) {
-    //     this->tank->draw_image(
-    //         Guppy::getAssetPath(),
-    //         guppyIt->getContent()->getPosition()->getAbsis(),
-    //         guppyIt->getContent()->getPosition()->getOrdinate()
-    //     );
-    //     guppyIt = guppyIt->getNext();
-    // }
+    LinkedListItem<Guppy*>* guppyIt;
+    guppyIt = Data::getGuppies()->getFirstItem();
+    while (guppyIt != NULL) {
+        this->tank->draw_image(
+            Guppy::getAssetPath(),
+            guppyIt->getContent()->getPosition()->getAbsis(),
+            guppyIt->getContent()->getPosition()->getOrdinate()
+        );
+        guppyIt = guppyIt->getNext();
+    }
 
     this->tank->update_screen();
 }
