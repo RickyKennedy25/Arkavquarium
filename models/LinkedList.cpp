@@ -48,7 +48,7 @@ template<class Type>
 void LinkedList<Type>::add(Type element) {
     LinkedListItem<Type> *newItem;
 
-    newItem = new LinkedListItem<Type>(element);
+    newItem = new LinkedListItem<Type>(element); 
     newItem->setPrev(this->last);
     if (this->last != NULL) { this->last->setNext(newItem); }
     this->last = newItem;

@@ -5,7 +5,7 @@
  * Construct Food at random position and 0 ordinate
  */
 Food::Food() {
-    this->position = new Position(800,600,true);
+    this->position = new Position(800,600,true); // assume maxHeight = 600 and maxWidth = 800 
     this->position->setOrdinate(0);
 }
 

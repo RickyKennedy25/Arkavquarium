@@ -38,7 +38,7 @@ class Food {
          * @return {Position} Food Position 
          **/
         Position* getPosition();
-        
+
 };
 
 #endif

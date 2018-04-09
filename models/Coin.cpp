@@ -23,10 +23,10 @@ Coin::Coin(int value, Position position) {
 /**
  * Decrease y-position by velocity less than maxVelocity
  */
-void Coin::move() {
+void Coin::move(int maxHeight) {
     Position *dest ;
     double absis = this->position->getAbsis();
-    dest = new Position(absis,800); // assume maxHeight 800
+    dest = new Position(absis,maxHeight); 
     this->position->moveVertical(*dest,(double)MAX_VELOCITY);
 }
 

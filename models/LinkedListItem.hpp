@@ -11,7 +11,7 @@ class LinkedListItem {
         LinkedListItem *prev;
     public:
         /** 
-         * Construct LinkedListItem with content = content, next = NULL, and prev = NULL
+         * Construct LinkedListItem with content = *content, next = NULL, and prev = NULL
          */
         LinkedListItem(Type content);
 

@@ -5,6 +5,7 @@
 #include <math.h>
 #include <algorithm>
 #include <iostream>
+#include <time.h>
 
 class Position {
     private:
@@ -18,9 +19,9 @@ class Position {
          */
         double y;
         /** 
-         *  Static Variable for random seed
+         * Has the srand be called
          */
-        static int seed;
+        static bool initialized;
     public:
         /**
          * Construct Position with x and y
@@ -87,6 +88,8 @@ class Position {
          * else return false 
          */
         bool operator!=(Position comp);
+
+        double magnitude(Position comp);
 };
 
 #endif

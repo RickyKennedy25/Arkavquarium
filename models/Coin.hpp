@@ -25,7 +25,7 @@ class Coin {
         /**
          * Decrease y-position by velocity less than maxVelocity
          */
-        void move();
+        void move(int maxHeight);
         
         /**
          * @return {Position*} Coin position
