@@ -10,12 +10,13 @@ class Guppy : public Fish {
          * Period time for Guppy producing coin
          */
         const static double PRODUCE_COIN_PERIOD;
-        const static std::string assetPath;
+        const static std::string assetPathLeft;
+        const static std::string assetPathRight;
         /**
          * Timer for producing coin
          * Updated every update method is called
          */
-       double produceCoinTimer;
+        double produceCoinTimer;
     public:
         /**
          * Construct Guppy
@@ -40,7 +41,7 @@ class Guppy : public Fish {
         /**
          * @return {std::string} asset path
          */
-        static std::string getAssetPath();
+        std::string getAssetPath();
 };
 
 #endif

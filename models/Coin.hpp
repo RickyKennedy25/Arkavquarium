@@ -6,14 +6,15 @@
 class Coin {
     private:
         static const int MAX_VELOCITY=4;
-        
+        const static std::string assetPathCoin;
+
         Position* position;
         int value;
     public:
         /**
          * Construct Coin at random position and random value
          */
-        Coin();
+        Coin(int maxWidth, int maxHeight);
         
         /**
          * Construct Coin at position
@@ -25,7 +26,7 @@ class Coin {
         /**
          * Decrease y-position by velocity less than maxVelocity
          */
-        void move(int maxHeight);
+        void move(double elapsedSeconds);
         
         /**
          * @return {Position*} Coin position
@@ -36,6 +37,11 @@ class Coin {
          * @return {int} Coin value
          */
         int getValue() const;
+
+        /**
+         * @return {std::string} asset path
+         */
+        static std::string getAssetPath();
 };
 
 

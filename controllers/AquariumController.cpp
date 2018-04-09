@@ -92,6 +92,8 @@ bool AquariumController::main(double elapsedSeconds) {
     }
     if (!stillRunning) return false;
 
+    this->moveObjects(elapsedSeconds);
+
     this->draw();
 
     return true;
@@ -157,13 +159,11 @@ Coin* AquariumController::findNearestCoin(Snail* snail) {
         nearestCoin = liItemCoin->getContent();
         minDistance = snail->getPosition()->magnitude(*(nearestCoin->getPosition()));
 
-        while (liItemCoin != liCoin->getLastItem())
-        {
+        while (liItemCoin != liCoin->getLastItem()) {
             // while (liItemFood->getNext() != NULL){
             tempCoin = liItemCoin->getContent();
             tempDistance = snail->getPosition()->magnitude(*(tempCoin->getPosition()));
-            if (tempDistance < minDistance)
-            {
+            if (tempDistance < minDistance) {
                 minDistance = tempDistance;
                 nearestCoin = tempCoin;
             }
@@ -242,72 +242,54 @@ void AquariumController::produceCoin(Fish fish) {
  * For every food, move food to ground
  * Move snail to nearest coin
  */
-void AquariumController::moveObjects() {
-    
-    LinkedList<Coin *> *liCoin = Data::getCoins();
-    LinkedListItem<Coin *> *liItemCoin = liCoin->getFirstItem();
-    Coin* currentCoin;
+void AquariumController::moveObjects(double elapsedSeconds) {
+    LinkedListItem<Coin *> *currentCoin = Data::getCoins()->getFirstItem();
 
-    while(liItemCoin != NULL){
-        currentCoin = liItemCoin->getContent();
-        currentCoin->move(this->getHeight());
-        liItemCoin = liItemCoin->getNext();
+    while (currentCoin != NULL) {
+        currentCoin->getContent()->move(elapsedSeconds);
+        currentCoin = currentCoin->getNext();
     }
 
-    LinkedList<Food *> *liFood = Data::getFoods();
-    LinkedListItem<Food *> *liItemFood = liFood->getFirstItem();
-    Food* currentFood;
-    Position* lowerPosition = new Position(this->getWidth(),this->getHeight());
-
-    while(liItemFood != NULL){
-        currentFood = liItemFood->getContent();
-        currentFood->move(lowerPosition);
-        liItemFood = liItemFood->getNext();
+    LinkedListItem<Food *> *currentFood = Data::getFoods()->getFirstItem();
+    while(currentFood != NULL){
+        currentFood->getContent()->move(elapsedSeconds);
+        currentFood = currentFood->getNext();
     }
 
-    LinkedList<Guppy*> *liGuppy = Data::getGuppies();
-    LinkedListItem<Guppy*> *liItemGuppy = liGuppy->getFirstItem();
-    Guppy* currentGuppy;
-
-    // while(liItemGuppy != liGuppy->getLastItem()){
-    while(liItemGuppy != NULL){ 
-        currentGuppy = liItemGuppy->getContent();   
-        if(currentGuppy->isStarving()){
-            Food *nearestFood;
-            nearestFood = findNearestFood(currentGuppy);
-            currentGuppy->moveToDestination(nearestFood->getPosition());
+    LinkedListItem<Guppy*> *currentGuppy = Data::getGuppies()->getFirstItem();
+    while (currentGuppy != NULL) {
+        if (currentGuppy->getContent()->isStarving()) {
+            Food *nearestFood = this->findNearestFood(currentGuppy->getContent());
+            currentGuppy
+                ->getContent()
+                ->moveToDestination(nearestFood->getPosition(), elapsedSeconds);
         } else {
-            currentGuppy->moveToDestination(this->getWidth(), this->getHeight());
+            currentGuppy
+                ->getContent()
+                ->moveToDestination(this->getWidth(), this->getHeight(), elapsedSeconds);
         }
-        liItemGuppy = liItemGuppy->getNext();
+        currentGuppy = currentGuppy->getNext();
     }
 
-    LinkedList<Piranha *> *liPiranha = Data::getPiranhas();
-    LinkedListItem<Piranha *> *liItemPiranha = liPiranha->getFirstItem();
-    Piranha *currentPiranha;
-
-    // while(liItemPiranha != liPiranha->getLastItem()){
-    while (liItemPiranha != NULL)
-    {
-        currentPiranha = liItemPiranha->getContent();
-        if (currentPiranha->isStarving())
-        {
-            Guppy *nearestGuppy;
-            nearestGuppy = findNearestGuppy(currentPiranha);
-            currentPiranha->moveToDestination(nearestGuppy->getPosition());
+    LinkedListItem<Piranha *> *currentPiranha = Data::getPiranhas()->getFirstItem();
+    while (currentPiranha != NULL) {
+        if (currentPiranha->getContent()->isStarving()) {
+            Guppy *nearestGuppy = findNearestGuppy(currentPiranha->getContent());
+            currentPiranha
+                ->getContent()
+                ->moveToDestination(nearestGuppy->getPosition(), elapsedSeconds);
+        } else {
+            currentPiranha
+                ->getContent()
+                ->moveToDestination(this->getWidth(), this->getHeight(), elapsedSeconds);
         }
-        else
-        {
-            currentPiranha->moveToDestination(this->getWidth(), this->getHeight());
-        }
-        liItemPiranha = liItemPiranha->getNext();
+        currentPiranha = currentPiranha->getNext();
     }
 
     Snail *currentSnail = Data::getSnail();
-    Coin *nearestcoin ;
-    if(!(liCoin->isEmpty())){
-        nearestcoin = findNearestCoin(currentSnail);
-        currentSnail->moveToDestination(*(nearestcoin->getPosition()));
+    if(!(Data::getCoins()->isEmpty())){
+        Coin *nearestcoin = findNearestCoin(currentSnail);
+        currentSnail->moveToDestination(*(nearestcoin->getPosition()), elapsedSeconds);
     }
 }
 
@@ -317,19 +299,59 @@ void AquariumController::moveObjects() {
 void AquariumController::draw() {
     this->tank->clear_screen();
     //this->tank->draw_text("Panah untuk bergerak, r untuk reset, x untuk keluar", 18, 10, 10, 0, 0, 0);
-    this->tank->draw_image("assets/img/Tanks.jpg",this->width/2,this->height/2);
+    this->tank->draw_image("assets/img/background.png",this->width/2,this->height/2);
 
-    LinkedListItem<Guppy*>* guppyIt;
-    guppyIt = Data::getGuppies()->getFirstItem();
-    while (guppyIt != NULL) {
+    LinkedListItem<Guppy*> *currentGuppy;
+    currentGuppy = Data::getGuppies()->getFirstItem();
+    while (currentGuppy != NULL) {
         this->tank->draw_image(
-            Guppy::getAssetPath(),
-            guppyIt->getContent()->getPosition()->getAbsis(),
-            guppyIt->getContent()->getPosition()->getOrdinate()
+            currentGuppy->getContent()->getAssetPath(),
+            currentGuppy->getContent()->getPosition()->getAbsis(),
+            currentGuppy->getContent()->getPosition()->getOrdinate()
         );
-        guppyIt = guppyIt->getNext();
+        currentGuppy = currentGuppy->getNext();
     }
 
+    LinkedListItem<Piranha*> *currentPiranha;
+    currentPiranha = Data::getPiranhas()->getFirstItem();
+    while(currentPiranha != NULL){
+        this->tank->draw_image(
+            currentPiranha->getContent()->getAssetPath(),
+            currentPiranha->getContent()->getPosition()->getAbsis(),
+            currentPiranha->getContent()->getPosition()->getOrdinate()
+            );
+        currentPiranha = currentPiranha->getNext();
+    }
+
+    LinkedListItem<Coin*> *currentCoin;
+    currentCoin = Data::getCoins()->getFirstItem();
+    while(currentCoin != NULL){
+        this->tank->draw_image(
+            Coin::getAssetPath(),
+            currentCoin->getContent()->getPosition()->getAbsis(),
+            currentCoin->getContent()->getPosition()->getOrdinate()
+        );
+        currentCoin = currentCoin->getNext();
+    }
+
+    LinkedListItem<Food*> *currentFood;
+    currentFood = Data::getFoods()->getFirstItem();
+    while (currentFood != NULL) {
+        this->tank->draw_image(
+            Food::getAssetPath(),
+            currentFood->getContent()->getPosition()->getAbsis(),
+            currentFood->getContent()->getPosition()->getOrdinate()
+        );
+        currentFood = currentFood->getNext();
+    }
+
+    Snail *currentSnail;
+    currentSnail = Data::getSnail();
+    this->tank->draw_image(
+        Snail::getAssetPath(),
+        currentSnail->getPosition()->getAbsis(),
+        currentSnail->getPosition()->getOrdinate()
+    );
     this->tank->update_screen();
 }
 

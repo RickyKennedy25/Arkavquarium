@@ -11,7 +11,7 @@ enum tOrientation { left, right };
 enum tGrowthStep { stepOne, stepTwo, stepThree };
 class Fish {
     protected:
-        static const int MAX_VELOCITY = 6;
+        static const int MAX_VELOCITY = 35;
         /**
          * Time from Fish eat until starving
          * @todo set constant
@@ -88,14 +88,14 @@ class Fish {
          * @param {Position} is the nearest Food for Guppy
          *   or nearest Guppy for Piranha
          */
-        void moveToDestination(Position* position);
+        void moveToDestination(Position* position, double elapsedSeconds);
         
         /**
          * Move Fish to their default destination
          * If Fish Position equal to default destination
          * random new destination 
          */
-        void moveToDestination(int maxWidth, int maxHeight);
+        void moveToDestination(int maxWidth, int maxHeight, double elapsedSeconds);
 };
 
 #endif
