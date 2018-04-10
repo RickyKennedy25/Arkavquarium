@@ -8,7 +8,7 @@ LinkedList<Coin*>* Data::coins = new LinkedList<Coin*>();
 Snail* Data::snail = NULL;
 int Data::money;
 int Data::egg;
-int Data::eggPrice;
+int Data::eggPrice = 1000;
 
 /**
  * Do Nothing
