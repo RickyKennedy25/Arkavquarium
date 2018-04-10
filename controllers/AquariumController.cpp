@@ -343,7 +343,7 @@ void AquariumController::moveObjects(double elapsedSeconds) {
 void AquariumController::draw() {
     this->tank->clear_screen();
     //this->tank->draw_text("Panah untuk bergerak, r untuk reset, x untuk keluar", 18, 10, 10, 0, 0, 0);
-    this->tank->draw_image("../assets/img/background.png",this->width/2,this->height/2);
+    this->tank->draw_image("assets/img/background.png",this->width/2,this->height/2);
 
     LinkedListItem<Guppy*> *currentGuppy;
     currentGuppy = Data::getGuppies()->getFirstItem();
