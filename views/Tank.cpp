@@ -74,7 +74,6 @@ void Tank::draw_image(std::string filename, int x, int y) {
     SDL_Surface* s = loadedSurfaces[filename];
 
     SDL_Rect dest;
-    y = this->height - y;
     dest.x = x - s->w/2;
     dest.y = y - s->h/2;
     dest.w = s->w;

@@ -17,10 +17,10 @@ AquariumController::AquariumController(int width, int height) {
 
     Guppy* guppy2 = new Guppy(this->width, this->height);
     Data::getGuppies()->add(guppy2);
-
+/*
     Piranha* piranha = new Piranha(this->width, this->height);
     Data::getPiranhas()->add(piranha);
-
+*/
     Snail* snail = new Snail(this->width, this->height);
     Data::setSnail(snail);
 
