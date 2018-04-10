@@ -2,6 +2,7 @@
 #include "Food.hpp"
 
 const std::string Food::assetPath = "assets/img/food.png";
+
 /**
  * Construct Food at destined position
  * @param {double} absis of food
@@ -9,14 +10,6 @@ const std::string Food::assetPath = "assets/img/food.png";
  */
 Food::Food(double x, double y) {
     this->position = new Position(x, y, false);
-}
-
-/**
- * Construct Food at x,0
- * @param {int} absis position
- */
-Food::Food(int x) {
-    this->position = new Position(x, 0);
 }
 
 /**
@@ -32,7 +25,7 @@ void Food::move(int y, double elapsedSeconds) {
 /**
  * @return {Position*} Food Position 
  **/
-Position* Food::getPosition() {
+Position* Food::getPosition() const {
     return this->position;
 }
 

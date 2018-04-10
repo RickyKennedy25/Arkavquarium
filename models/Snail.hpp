@@ -2,12 +2,14 @@
 #define SNAIL_HPP
 
 #include "Position.hpp"
+#include "Orientation.hpp"
+#include "Drawable.hpp"
 
-class Snail {
+class Snail : public Drawable {
     private:
       const static std::string assetPath;
       const int MAX_VELOCITY = 60;
-      Position *position;
+      tOrientation orientation;
         
     public:
         /**
@@ -26,12 +28,12 @@ class Snail {
          * Move position to dest not exceeding MAX_VELOCITY
          * @param {Position} destination
          */
-        void moveToDestination(Position position, double elapsedSeconds);
+        void moveToDestination(Position* position, double elapsedSeconds);
 
         /**
          * @return {std::string} asset path
          */
-        static std::string getAssetPath();
+        std::string getAssetPath();
 };
 
 #endif

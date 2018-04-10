@@ -2,13 +2,13 @@
 #define COIN_HPP
 
 #include "Position.hpp"
+#include "Drawable.hpp"
 
-class Coin {
+class Coin : public Drawable {
     private:
         static const int MAX_VELOCITY=40;
         const static std::string assetPathCoin;
 
-        Position* position;
         int value;
     public:
         /**
@@ -41,7 +41,7 @@ class Coin {
         /**
          * @return {std::string} asset path
          */
-        static std::string getAssetPath();
+        std::string getAssetPath();
 };
 
 

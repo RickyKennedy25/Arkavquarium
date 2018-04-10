@@ -1,6 +1,7 @@
 #ifndef DATA_HPP
 #define DATA_HPP
 
+#include "Drawable.hpp"
 #include "Fish.hpp"
 #include "Guppy.hpp"
 #include "Piranha.hpp"

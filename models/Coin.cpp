@@ -2,6 +2,7 @@
 #include "Coin.hpp"
 
 const std::string Coin::assetPathCoin = "assets/img/coin_shine.png";
+
 /**
  * Construct Coin at random position and random value
  * assume value less than 10

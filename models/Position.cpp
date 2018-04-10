@@ -1,4 +1,5 @@
 #include "Position.hpp"
+#include <cmath>
 
 using namespace std;
 
@@ -113,7 +114,7 @@ void Position::moveVertical(Position dest,double maxVelocity) {
  * @return {bool} is two position has same absis and ordinate
  */
 bool Position::operator==(Position comp) {
-    return this->x == comp.getAbsis() && this->y == comp.getOrdinate();
+    return this->magnitude(comp) < 10;
 }
 
 /**

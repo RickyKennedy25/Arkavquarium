@@ -1,28 +1,36 @@
 #include "Piranha.hpp"
 
 const std::string Piranha::assetPath = "assets/img/piranha";
+const int Piranha::PRICE = 1000;
+const int Piranha::MAX_VELOCITY = 50;
+
 /**
  * Construct Piranha with isJustEatGuppy as False
+ * and maxVelocity as piranha max velocity
  */
 Piranha::Piranha(int maxWidth, int maxHeight):Fish::Fish(maxWidth, maxHeight){
-    this->isJustEatGuppy= false;
+    this->isJustEatGuppy = 0;
+    this->maxVelocity = Piranha::MAX_VELOCITY;
 }
 
 /**
- * Set isJustEatGuppy to false
- * @return {bool} isJustEatGuppy before edited
+ * Set isJustEatGuppy to 0
+ * @return {int} isJustEatGuppy
  */
-bool Piranha::isProduceCoin() {
-    bool Temp = this->isJustEatGuppy;
-    this->isJustEatGuppy = false;
+int Piranha::isProduceCoin() {
+    int Temp = this->isJustEatGuppy;
+    this->isJustEatGuppy = 0;
     return Temp;
 }
 
 /**
+ * Override parent eat(). After parent eat(),
  * Set isJustEatGuppy to True
+ * @param {int} growth step of fish eaten
  */
-void Piranha::eatGuppy() {
-    this->isJustEatGuppy = true;
+void Piranha::eat(int x) {
+    Fish::eat();
+    this->isJustEatGuppy = x+1;
 }
 
 /**
@@ -30,19 +38,16 @@ void Piranha::eatGuppy() {
  */
 std::string Piranha::getAssetPath() {
     std::string path = Piranha::assetPath;
-    if (this->getOrientation() == left) {
-        path += "_left";
-    } else {
-        path += "_right";
-    }
 
-    if (this->getGrowthStep() == stepOne) {
-        path += "_small";
-    } else if (this->getGrowthStep() == stepTwo) {
-        path += "_medium";
-    } else {
-        path += "_big";
-    }
+    if (this->getOrientation() == left) { path += "_left"; }
+    else { path += "_right"; }
+
+    if (this->isStarving()) { path += "_hungry"; }
+
     path += ".png";
     return path;
+}
+
+int Piranha::getPrice() {
+    return Piranha::PRICE;
 }

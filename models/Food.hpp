@@ -1,21 +1,16 @@
 #ifndef FODD_HPP
 #define FODD_HPP
 
-
 #include "Position.hpp"
+#include "Drawable.hpp"
 
-class Food {
+class Food : public Drawable {
     private:
-      const static std::string assetPath;
-      /**
+        const static std::string assetPath;
+        /**
          * Max velocity of the food movement
          */
-      const int MAX_VELOCITY = 20;
-
-      /**
-         * Position of the food
-         */
-      Position *position;
+        const int MAX_VELOCITY = 30;
         
     public:
         /**
@@ -24,12 +19,6 @@ class Food {
          * @param {double} ordinate of food
          */
         Food(double x, double y);
-        
-        /**
-         * Construct Food at x,0
-         * @param {int} absis position
-         */
-        Food(int x);
         
         /**
          * Move Food to bottom
@@ -41,12 +30,12 @@ class Food {
         /**
          * @return {Position} Food Position 
          **/
-        Position* getPosition();
+        Position* getPosition() const;
 
         /**
          * @return {std::string} asset path
          */
-        static std::string getAssetPath();
+        std::string getAssetPath();
 };
 
 #endif

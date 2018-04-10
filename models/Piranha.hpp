@@ -5,11 +5,15 @@
 
 class Piranha : public Fish {
 private:
+        const static int PRICE;
+        const static int MAX_VELOCITY;
         const static std::string assetPath;
         /**
-         * Piranha has just eat a guppy 
+         * Piranha has just eat a guppy
+         * 0 if false
+         * x+1 if just eat guppy with growth step x
          */
-        bool isJustEatGuppy;
+        int isJustEatGuppy;
 
 public:
         /**
@@ -18,21 +22,22 @@ public:
         Piranha(int maxWidth, int maxHeight);
 
         /**
-         * Set isJustEatGuppy to false
-         * @return {bool} isJustEatGuppy before edited
+         * Set isJustEatGuppy to 0
+         * @return {int} isJustEatGuppy
          */
-        bool isProduceCoin();
+        int isProduceCoin();
 
         /**
          * Set isJustEatGuppy to True
+         * @param {int} growth step of fish eaten
          */
-        void eatGuppy();
+        void eat(int x);
 
         /**
          * @return {std::string} asset path
          */
         std::string getAssetPath();
 
+        static int getPrice();
 };
-
 #endif

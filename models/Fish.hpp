@@ -2,13 +2,13 @@
 #define FISH_HPP
 
 #include "Position.hpp"
+#include "Orientation.hpp"
+#include "Drawable.hpp"
 
 enum tStatus { starving, idle };
-enum tOrientation { left, right };
-enum tGrowthStep { stepOne, stepTwo, stepThree };
-class Fish {
+
+class Fish : public Drawable {
     protected:
-        static const int MAX_VELOCITY = 35;
         /**
          * Time from Fish eat until starving
          * @todo set constant
@@ -23,12 +23,11 @@ class Fish {
         static const int SECOND_GROWTH_EAT_COUNTER = 15;
 
         tStatus status;
-        Position* position;
+        double maxVelocity;
         /**
          * Destination of Fish when Fish is idle
          */
         Position* destination;
-        tGrowthStep growthStep;
         tOrientation orientation;
         double starvingTimer;
         int eatCounter;
@@ -52,7 +51,6 @@ class Fish {
         tStatus getStatus() const;
         Position* getPosition() const;
         Position* getDestination() const;
-        tGrowthStep getGrowthStep() const;
         double getStarvingTimer() const;
         tOrientation getOrientation() const;
         int getEatCounter() const;
@@ -63,11 +61,10 @@ class Fish {
         void setStatus(tStatus status);
         void setPosition(Position* position);
         void setDestination(Position* position);
-        void setGrowthStep(tGrowthStep growthStep);
         void setStarvingTimer(double starvingTimer);
         void setOrientation(tOrientation orientation);
               
-        virtual bool isProduceCoin()=0;
+        virtual int isProduceCoin()=0;
         
         /**
          * @return {bool} REPLETE TIME <= starvingTimer <= STARVING TIME 
@@ -76,7 +73,6 @@ class Fish {
         
         /**
          * Increment eatCounter
-         * If exceed minimum eatCounter, upgrade growthStep to next step
          */
         void eat();
         
@@ -93,6 +89,11 @@ class Fish {
          * random new destination 
          */
         void moveToDestination(int maxWidth, int maxHeight, double elapsedSeconds);
+
+        /**
+         * @return {int} price of this kind of fish
+         */
+        static int getPrice();
 };
 
 #endif

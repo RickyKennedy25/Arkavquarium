@@ -72,10 +72,9 @@ class AquariumController {
         Guppy* findNearestGuppy(Piranha* piranha);
 
         /**
-         * Create new Coin if the fish will produce coin
-         * @param {Fish} a fish to produce Coin
-         *
-        void produceCoin(Fish fish);*/
+         * Create new Coin for every fish if the fish will produce coin
+         */
+        void produceCoin();
         
         /**
          * For every fish, move fish to nearest food if hungry, or to dest
@@ -90,6 +89,12 @@ class AquariumController {
          * Draw all entity
          */
         void draw();
+
+        /**
+         * Draw a drawable
+         * @param {Drawable*} drawable object to draw
+         */
+        void drawDrawable(Drawable* drawable);
         
 };
 
