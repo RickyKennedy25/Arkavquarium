@@ -74,11 +74,14 @@ bool AquariumController::main(double elapsedSeconds) {
 
         if (clickedCoin != NULL) {
             Data::getCoins()->remove(clickedCoin);
-			Data::setMoney(Data::getMoney() + clickedCoin->getValue());
+            Data::setMoney(Data::getMoney() + clickedCoin->getValue());
             delete clickedCoin;
         } else {
-            Food* newFood = new Food(clicked.first, clicked.second);
-            Data::getFoods()->add(newFood);
+            if (Data::getMoney() > Food::getPrice()) {
+                Food* newFood = new Food(clicked.first, clicked.second);
+                Data::getFoods()->add(newFood);
+                Data::setMoney(Data::getMoney() - Food::getPrice());
+            }
         }
         this->tank->resetLastClicked();
     }
@@ -129,14 +132,9 @@ bool AquariumController::main(double elapsedSeconds) {
           return false;
     }
 
-    if (!this->finishState()) {
-        this->moveObjects(elapsedSeconds);
-        this->produceCoin();
-        this->draw();
-    } else {
-        this->tank->draw_text("CONGRATULATIONS!!!", 25, (int)this->width/2, (int)this->height/2, 0, 0, 0);        
-    }
-        
+    this->moveObjects(elapsedSeconds);
+    this->produceCoin();
+    this->draw();
 
     return true;
 }
@@ -446,6 +444,12 @@ void AquariumController::draw() {
     currentSnail = Data::getSnail();
     this->drawDrawable(currentSnail);
     
+    if (this->winState()) {
+        this->tank->draw_text("CONGRATULATIONS!!!", 25, (int)this->width/2, (int)this->height/2, 0, 0, 0);
+    } else if (this->loseState()) {
+        this->tank->draw_text("YOU LOSE!!!", 25, (int)this->width/2, (int)this->height/2, 0, 0, 0);
+    } 
+    
     this->tank->update_screen();
 }
 
@@ -483,12 +487,23 @@ void AquariumController::buyEgg(){
 		Data::setEgg(Data::getEgg()+1);
 	}
 }
-
+        
 /**
- * Finish State
+ * The game has been finished and the player wins
  * return {bool} Data::getEgg == WinCondition
  */
+bool AquariumController::winState() {
+    return Data::getEgg() == WIN_CONDITION;
+}
 
-bool AquariumController::finishState(){
-    return Data::getEgg() == WIN_CONDITION ;
+/**
+ * The game has been finished and the player lose
+ * return {bool} there is no fish, coin, and money < 100
+ */
+bool AquariumController::loseState() {
+    return
+        Data::getGuppies()->isEmpty() &&
+        Data::getPiranhas()->isEmpty() &&
+        Data::getCoins()->isEmpty() &&
+        Data::getMoney() < Guppy::getPrice();
 }

@@ -72,7 +72,7 @@ int Data::getEggPrice(){
  * @param {int} money
  */
 void Data::setMoney(int money){
-	Data::money = 100000;
+	Data::money = money;
 }
 
 /**

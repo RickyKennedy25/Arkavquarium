@@ -35,3 +35,10 @@ Position* Food::getPosition() const {
 std::string Food::getAssetPath() {
     return Food::assetPath;
 }
+
+/**
+ * @return {int} food price
+ */
+int Food::getPrice() {
+    return Food::PRICE;        
+}

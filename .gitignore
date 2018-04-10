@@ -1,4 +1,5 @@
 .*
 **.gch
+*/*.log
 bin/
 !bin/.gitkeep

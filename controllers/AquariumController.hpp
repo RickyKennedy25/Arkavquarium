@@ -104,11 +104,16 @@ class AquariumController {
 		void buyPiranha();
         
         /**
-         * Finish State
+         * The game has been finished and the player wins
          * return {bool} Data::getEgg == WinCondition
          */
-
-        bool finishState();
+        bool winState();
+        
+        /**
+         * The game has been finished and the player lose
+         * return {bool} there is no fish, coin, and money < 100
+         */
+        bool loseState();
 };
 
 

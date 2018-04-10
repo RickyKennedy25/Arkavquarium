@@ -7,11 +7,11 @@
 class Food : public Drawable {
     private:
         const static std::string assetPath;
+        const static int PRICE = 10; 
         /**
          * Max velocity of the food movement
          */
-        const int MAX_VELOCITY = 30;
-        
+        const int MAX_VELOCITY = 30;      
     public:
         /**
          * Construct Food at destined position
@@ -36,6 +36,11 @@ class Food : public Drawable {
          * @return {std::string} asset path
          */
         std::string getAssetPath();
+
+        /**
+         * @return {int} food price
+         */
+        static int getPrice();
 };
 
 #endif
