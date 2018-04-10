@@ -300,28 +300,35 @@ void AquariumController::moveObjects(double elapsedSeconds) {
         currentGuppy
             ->getContent()
             ->setStarvingTimer(currentGuppy->getContent()->getStarvingTimer() + elapsedSeconds);
-        if (currentGuppy->getContent()->isStarving()) {
-            Food *nearestFood = this->findNearestFood(currentGuppy->getContent());
-            if (nearestFood == NULL) {
-                currentGuppy
-                    ->getContent()
-                    ->moveToDestination(this->getWidth(), this->getHeight(), elapsedSeconds);
+        if (currentGuppy->getContent()->isDie()){
+            LinkedListItem<Guppy*> *deleteGuppy = currentGuppy;
+            currentGuppy = currentGuppy->getNext();
+            Data::getGuppies()->remove(deleteGuppy);
+        } else {    
+            if (currentGuppy->getContent()->isStarving()) {
+                Food *nearestFood = this->findNearestFood(currentGuppy->getContent());
+                if (nearestFood == NULL) {
+                    currentGuppy
+                        ->getContent()
+                        ->moveToDestination(this->getWidth(), this->getHeight(), elapsedSeconds);
+                } else {
+                    currentGuppy
+                        ->getContent()
+                        ->moveToDestination(nearestFood->getPosition(), elapsedSeconds);
+                    if (*(currentGuppy->getContent()->getPosition()) == *(nearestFood->getPosition())) {
+                        currentGuppy->getContent()->eat();
+                        Data::getFoods()->remove(nearestFood);
+                        delete nearestFood;
+                    }
+                }
             } else {
                 currentGuppy
                     ->getContent()
-                    ->moveToDestination(nearestFood->getPosition(), elapsedSeconds);
-                if (*(currentGuppy->getContent()->getPosition()) == *(nearestFood->getPosition())) {
-                    currentGuppy->getContent()->eat();
-                    Data::getFoods()->remove(nearestFood);
-                    delete nearestFood;
-                }
+                    ->moveToDestination(this->getWidth(), this->getHeight(), elapsedSeconds);
             }
-        } else {
-            currentGuppy
-                ->getContent()
-                ->moveToDestination(this->getWidth(), this->getHeight(), elapsedSeconds);
+            currentGuppy = currentGuppy->getNext();
         }
-        currentGuppy = currentGuppy->getNext();
+
     }
 
     LinkedListItem<Piranha *> *currentPiranha = Data::getPiranhas()->getFirstItem();
