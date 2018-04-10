@@ -10,7 +10,7 @@
  * Makanan ikan muncul ketika dibeli oleh pemain (harus mengurangi uang).
  * Makanan ikan selalu bergerak ke bawah. 
  * Kecepatan gerak makanan ikan harus lebih lambat dari kecepatan ikan.
-4. Koin 
+4. Koin DONE 
  * Koin selalu bergerak ke bawah. done
  * Ketika koin sampai di dasar, koin tersebut diam. done
  * Koin yang diambil meningkatkan nilai atribut uang pemain sejumlah nilai koin.

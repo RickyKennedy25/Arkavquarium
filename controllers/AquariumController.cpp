@@ -115,6 +115,9 @@ bool AquariumController::main(double elapsedSeconds) {
 			case SDLK_g:
 				buyGuppy();
 				break;
+			case SDLK_e:
+				buyEgg();
+				break;
         }
     }
     if (!stillRunning) return false;
