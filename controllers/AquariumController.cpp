@@ -390,8 +390,8 @@ void AquariumController::moveObjects(double elapsedSeconds) {
         currentSnail->moveToDestination(nearestcoin->getPosition(), elapsedSeconds);
         if (*(currentSnail->getPosition()) == *(nearestcoin->getPosition())) {
             Data::getCoins()->remove(nearestcoin);
+            Data::setMoney(Data::getMoney()+nearestcoin->getValue());
             delete nearestcoin;
-            Data::setMoney(Data::getMoney+Coin->getValue())
         }
     }
 }
