@@ -101,6 +101,7 @@ class AquariumController {
 		void buyGuppy();
 
 		void buyEgg();
+		void buyPiranha();
         
         /**
          * Finish State
