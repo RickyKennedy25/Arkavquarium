@@ -95,6 +95,8 @@ class AquariumController {
          * @param {Drawable*} drawable object to draw
          */
         void drawDrawable(Drawable* drawable);
+		
+		void buyGuppy();
         
 };
 

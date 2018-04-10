@@ -1,6 +1,6 @@
 #include "Guppy.hpp"
 
-const double Guppy::PRODUCE_COIN_PERIOD = 5;
+const double Guppy::PRODUCE_COIN_PERIOD = 8;
 const int Guppy::COIN_VALUE_STEP_ONE = 10;
 const int Guppy::COIN_VALUE_STEP_TWO = 20;
 const int Guppy::COIN_VALUE_STEP_THREE = 40;

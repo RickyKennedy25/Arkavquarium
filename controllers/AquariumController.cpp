@@ -11,7 +11,7 @@ AquariumController::AquariumController(int width, int height) {
 
     this->height = height;
     this->width = width;
-    
+    Data::setMoney(1000000); 
     Guppy* guppy1 = new Guppy(this->width, this->height);
     Data::getGuppies()->add(guppy1);
 
@@ -82,10 +82,13 @@ bool AquariumController::main(double elapsedSeconds) {
         return false;
     }
 
-    /* handler for pressed keys
+    /*/ handler for pressed keys
     for (auto key : this->tank->get_pressed_keys()) {
         
         switch (key) {
+			case SDLK_g:
+				buyGuppy();
+				break;
             case SDLK_UP:
                 cy -= speed * sec_since_last;
                 break;
@@ -107,6 +110,9 @@ bool AquariumController::main(double elapsedSeconds) {
             case SDLK_x:
                 stillRunning = false;
                 break;
+			case SDLK_g:
+				buyGuppy();
+				break;
         }
     }
     if (!stillRunning) return false;
@@ -413,4 +419,12 @@ void AquariumController::drawDrawable(Drawable* drawable) {
         drawable->getPosition()->getAbsis(),
         drawable->getPosition()->getOrdinate()
     );
+}
+
+void AquariumController::buyGuppy(){
+	if (Data::getMoney() >= Guppy::getPrice()){
+		Data::setMoney(Data::getMoney() - Guppy::getPrice());
+		Guppy *g = new Guppy(this->width, this->height);
+		Data::getGuppies()->add(g);
+	}
 }

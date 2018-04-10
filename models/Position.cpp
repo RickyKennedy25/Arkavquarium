@@ -59,7 +59,7 @@ void Position::random(int maxWidth, int maxHeight) {
         srand(time(NULL));
         Position::initialized = true;
     }
-    int pad = maxWidth * 15 / 100;
+    int pad = maxWidth * 5 / 100;
     this->x = (rand() % (maxWidth - 2 * pad)) + pad;
     this->y = rand() % maxHeight;
 }

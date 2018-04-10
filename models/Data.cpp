@@ -6,6 +6,8 @@ LinkedList<Piranha*>* Data::piranhas = new LinkedList<Piranha*>();
 LinkedList<Food*>* Data::foods = new LinkedList<Food*>();
 LinkedList<Coin*>* Data::coins = new LinkedList<Coin*>();
 Snail* Data::snail = NULL;
+int Data::money;
+int Data::egg;
 
 /**
  * Do Nothing
@@ -51,28 +53,28 @@ Snail* Data::getSnail() {
 /**
  * @return {int} money
  */
-static int getMoney(){
+int Data::getMoney(){
 	return Data::money;
 }
 
 /**
  * @return {int} egg
  */
-static int getEgg(){
+int Data::getEgg(){
 	return Data::egg;
 }
 
 /**
  * @param {int} money
  */
-static void setMoney(int money){
+void Data::setMoney(int money){
 	Data::money = money;
 }
 
 /**
  * @param {int} egg
  */
-static void setEgg(int egg){
+void Data::setEgg(int egg){
 	Data::egg = egg;
 }
 
