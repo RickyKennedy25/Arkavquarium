@@ -71,6 +71,7 @@ bool AquariumController::main(double elapsedSeconds) {
 
         if (clickedCoin != NULL) {
             Data::getCoins()->remove(clickedCoin);
+			Data::setMoney(Data::getMoney() + clickedCoin->getValue());
             delete clickedCoin;
         } else {
             Food* newFood = new Food(clicked.first, clicked.second);
