@@ -2,9 +2,6 @@
 #define FISH_HPP
 
 #include "Position.hpp"
-//#include "Orientation.hpp"
-//#include "GrowthStep.hpp"
-//#include "Status.hpp"
 
 enum tStatus { starving, idle };
 enum tOrientation { left, right };
@@ -21,7 +18,7 @@ class Fish {
          * Time from Fish starving until die
          * @todo set constant
          */
-        static const int STARVATION_TIME = 17;
+        static const int STARVATION_TIME = 24;
         static const int FIRST_GROWTH_EAT_COUNTER = 7;
         static const int SECOND_GROWTH_EAT_COUNTER = 15;
 
@@ -33,7 +30,7 @@ class Fish {
         Position* destination;
         tGrowthStep growthStep;
         tOrientation orientation;
-        int starvingTimer;
+        double starvingTimer;
         int eatCounter;
         
     public:
@@ -56,7 +53,7 @@ class Fish {
         Position* getPosition() const;
         Position* getDestination() const;
         tGrowthStep getGrowthStep() const;
-        int getStarvingTimer() const;
+        double getStarvingTimer() const;
         tOrientation getOrientation() const;
         int getEatCounter() const;
 
@@ -67,7 +64,7 @@ class Fish {
         void setPosition(Position* position);
         void setDestination(Position* position);
         void setGrowthStep(tGrowthStep growthStep);
-        void setStarvingTimer(int starvingTimer);
+        void setStarvingTimer(double starvingTimer);
         void setOrientation(tOrientation orientation);
               
         virtual bool isProduceCoin()=0;

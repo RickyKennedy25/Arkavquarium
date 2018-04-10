@@ -1,7 +1,6 @@
 #include "Piranha.hpp"
 
-const std::string Piranha::assetPathLeft = "assets/img/Piranha_left.png";
-const std::string Piranha::assetPathRight = "assets/img/Piranha_right.png";
+const std::string Piranha::assetPath = "assets/img/piranha";
 /**
  * Construct Piranha with isJustEatGuppy as False
  */
@@ -30,9 +29,20 @@ void Piranha::eatGuppy() {
  * @return {std::string} asset path
  */
 std::string Piranha::getAssetPath() {
-    if (this->getPosition()->getAbsis() > this->getDestination()->getAbsis()) {
-        return Piranha::assetPathLeft;
+    std::string path = Piranha::assetPath;
+    if (this->getOrientation() == left) {
+        path += "_left";
     } else {
-        return Piranha::assetPathRight;
+        path += "_right";
     }
+
+    if (this->getGrowthStep() == stepOne) {
+        path += "_small";
+    } else if (this->getGrowthStep() == stepTwo) {
+        path += "_medium";
+    } else {
+        path += "_big";
+    }
+    path += ".png";
+    return path;
 }

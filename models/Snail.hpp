@@ -6,7 +6,7 @@
 class Snail {
     private:
       const static std::string assetPath;
-      const int MAX_VELOCITY = 20;
+      const int MAX_VELOCITY = 60;
       Position *position;
         
     public:

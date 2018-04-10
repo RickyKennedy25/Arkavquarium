@@ -7,7 +7,7 @@ const std::string Coin::assetPathCoin = "assets/img/coin_shine.png";
  * assume value less than 10
  */
 Coin::Coin(int maxWidth, int maxHeight) {
-    this->position = new Position(800,600,true); //Sementara perlu parameter maxWidth dan parameter maxHeight
+    this->position = new Position(maxWidth,maxHeight,true);
     this->position->setOrdinate(100);
     this->value = rand() %10; 
 }
@@ -25,8 +25,8 @@ Coin::Coin(int value, Position position) {
 /**
  * Decrease y-position by velocity less than maxVelocity
  */
-void Coin::move( int maxHeight, double elapsedSeconds) {
-    Position *bottom = new Position(0, maxHeight, false);
+void Coin::move(int maxHeight, double elapsedSeconds) {
+    Position *bottom = new Position(0, maxHeight/10, false);
     this->getPosition()->moveVertical(*bottom, elapsedSeconds * MAX_VELOCITY);
 }
 

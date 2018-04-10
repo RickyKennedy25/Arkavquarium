@@ -74,6 +74,7 @@ void Tank::draw_image(std::string filename, int x, int y) {
     SDL_Surface* s = loadedSurfaces[filename];
 
     SDL_Rect dest;
+    y = this->height - y;
     dest.x = x - s->w/2;
     dest.y = y - s->h/2;
     dest.w = s->w;
@@ -114,15 +115,11 @@ void Tank::handle_input() {
                 quit = true;
             } else if (e.type == SDL_MOUSEBUTTONDOWN) {
                 this->lastClicked.first = e.motion.x;
-                this->lastClicked.second = e.motion.y;
+                this->lastClicked.second = this->height - e.motion.y;
             } else if (e.type == SDL_KEYDOWN && !e.key.repeat) {
-                this->lastClicked.first = -1;
-                this->lastClicked.second = -1;
                 pressedKeys.insert(e.key.keysym.sym);
                 tappedKeys.insert(e.key.keysym.sym);
             } else if (e.type == SDL_KEYUP) {
-                this->lastClicked.first = -1;
-                this->lastClicked.second = -1;
                 pressedKeys.erase(e.key.keysym.sym);
             }
         }
@@ -138,4 +135,13 @@ const std::set<SDL_Keycode>& Tank::get_pressed_keys() {
 
 const std::set<SDL_Keycode>& Tank::get_tapped_keys() {
     return tappedKeys;
+}
+
+std::pair<double, double> Tank::getLastClicked() {
+    return this->lastClicked;
+}
+
+void Tank::resetLastClicked() {
+    this->lastClicked.first = -1;
+    this->lastClicked.second = -1;
 }

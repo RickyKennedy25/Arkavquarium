@@ -10,7 +10,7 @@ class Food {
       /**
          * Max velocity of the food movement
          */
-      const int MAX_VELOCITY = 4;
+      const int MAX_VELOCITY = 20;
 
       /**
          * Position of the food
@@ -19,9 +19,11 @@ class Food {
         
     public:
         /**
-         * Construct Food at random position and 0 ordinate
+         * Construct Food at destined position
+         * @param {double} absis of food
+         * @param {double} ordinate of food
          */
-        Food(int maxWidth, int maxHeight);
+        Food(double x, double y);
         
         /**
          * Construct Food at x,0
@@ -31,9 +33,10 @@ class Food {
         
         /**
          * Move Food to bottom
+         * @param {int} minimum height
          * @param {double} elapsed seconds
          */
-        void move(double elapsedSeconds);
+        void move(int y, double elapsedSeconds);
         
         /**
          * @return {Position} Food Position 

@@ -3,11 +3,12 @@
 
 const std::string Food::assetPath = "assets/img/food.png";
 /**
- * Construct Food at random position and 0 ordinate
+ * Construct Food at destined position
+ * @param {double} absis of food
+ * @param {double} ordinate of food
  */
-Food::Food(int maxWidth, int maxHeight) {
-    this->position = new Position(maxWidth, maxHeight, true); // assume maxHeight = 600 and maxWidth = 800 
-    this->position->setOrdinate(0);
+Food::Food(double x, double y) {
+    this->position = new Position(x, y, false);
 }
 
 /**
@@ -20,10 +21,11 @@ Food::Food(int x) {
 
 /**
  * Move Food to bottom
+ * @param {int} minimum height
  * @param {double} elapsedSeconds
  */
-void Food::move(double elapsedSeconds) {
-    Position *bottom = new Position(0, 0, false);
+void Food::move(int y, double elapsedSeconds) {
+    Position *bottom = new Position(0, y, false);
     this->position->moveVertical(*bottom, elapsedSeconds * MAX_VELOCITY);
 }
 

@@ -5,8 +5,7 @@
 
 class Piranha : public Fish {
 private:
-        const static std::string assetPathLeft;
-        const static std::string assetPathRight;
+        const static std::string assetPath;
         /**
          * Piranha has just eat a guppy 
          */

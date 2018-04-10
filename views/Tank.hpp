@@ -86,6 +86,9 @@ class Tank {
 
         // Mengembalikan waktu dari permulaan program dalam nilai detik (bisa pecahan).
         double time_since_start();
+
+        std::pair<double, double> getLastClicked();
+        void resetLastClicked();
 };
 
 #endif

@@ -42,7 +42,7 @@ tGrowthStep Fish::getGrowthStep() const {
     return this->growthStep;
 }
 
-int Fish::getStarvingTimer() const {
+double Fish::getStarvingTimer() const {
     return this->starvingTimer;
 }
 
@@ -73,7 +73,7 @@ void Fish::setGrowthStep(tGrowthStep growthStep) {
     this->growthStep = growthStep;
 }
 
-void Fish::setStarvingTimer(int starvingTimer) {
+void Fish::setStarvingTimer(double starvingTimer) {
     this->starvingTimer = starvingTimer;
 }
 
@@ -108,6 +108,11 @@ void Fish::eat() {
  */
 void Fish::moveToDestination(Position* position, double elapsedSeconds) {
 	this->position->move(*position, elapsedSeconds * MAX_VELOCITY); 
+    if (this->position->getAbsis() < position->getAbsis()) {
+        this->orientation = right;
+    } else {
+        this->orientation = left;
+    }
 }
 
 /**
@@ -118,8 +123,11 @@ void Fish::moveToDestination(Position* position, double elapsedSeconds) {
 void Fish::moveToDestination(int maxWidth, int maxHeight, double elapsedSeconds) {
     if (*(this->position) == *(this->destination)){
 	    this->destination = new Position(maxWidth, maxHeight, true);
-        std::cout<<this->destination->getAbsis()<<","
-                 <<this->destination->getOrdinate()<<std::endl;
     }
     this->position->move(*(this->destination), elapsedSeconds * MAX_VELOCITY);
+    if (this->position->getAbsis() < this->destination->getAbsis()) {
+        this->orientation = right;
+    } else {
+        this->orientation = left;
+    }
 }
