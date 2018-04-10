@@ -49,7 +49,6 @@ Snail* Data::getSnail() {
     return Data::snail;
 }
 
-
 /**
  * @return {int} money
  */

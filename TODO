@@ -2,23 +2,23 @@
 1. Akuarium done
  * Akuarium dapat dianggap sebagai sebuah matriks 2D (sumbu X dan Y) dengan ukuran yang sama dengan ukuran layar. 
  * Posisi ujung kiri-atas akuarium memiliki koordinat (0,0). Semakin ke bawah, maka nilai y semakin besar. Semakin ke kanan, nilai x semakin membesar.
-2. Guppy
- * Guppy dapat dibeli oleh pemain dengan uang (tentukan harganya sendiri).
+2. Guppy 
+ * Guppy dapat dibeli oleh pemain dengan uang (tentukan harganya sendiri). 
  * Ketika guppy dibeli, guppy dimunculkan pada posisi random dan dalam kondisi tahap pertumbuhan ke-1.
- * Jika dalam waktu M guppy tidak menemukan makanan, guppy mati.
-3. Makanan Ikan
+ * Jika dalam waktu M guppy tidak menemukan makanan, guppy mati. done
+3. Makanan Ikan done
  * Makanan ikan muncul ketika dibeli oleh pemain (harus mengurangi uang).
- * Makanan ikan selalu bergerak ke bawah.
+ * Makanan ikan selalu bergerak ke bawah. 
  * Kecepatan gerak makanan ikan harus lebih lambat dari kecepatan ikan.
-4. Koin
- * Koin selalu bergerak ke bawah.
- * Ketika koin sampai di dasar, koin tersebut diam.
+4. Koin 
+ * Koin selalu bergerak ke bawah. done
+ * Ketika koin sampai di dasar, koin tersebut diam. done
  * Koin yang diambil meningkatkan nilai atribut uang pemain sejumlah nilai koin.
-5. Piranha
-6. Siput
+5. Piranha done
+6. Siput done
  * Siput hanya ada di dasar akuarium.
 Hal-hal lain yang harus ada, namun tidak berupa entitas di dalam akuarium, adalah:
-1. Uang
+1. Uang 
  * Uang merupakan nilai integer yang menyatakan jumlah uang yang dimiliki oleh pemain pada suatu waktu.
  * Jumlah uang harus selalu ditampilkan.
  * Pada awal permainan, pemain memiliki sejumlah uang (tidak 0).

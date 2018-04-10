@@ -78,6 +78,13 @@ bool Fish::isStarving() {
     return (REPLETE_TIME <= this->starvingTimer) && (this->starvingTimer <= STARVATION_TIME);
 }
 
+ /**
+  * @return {bool} starvingTimer > STARVING TIME
+  */
+bool Fish::isDie(){
+    return this->getStarvingTimer() > STARVATION_TIME;
+}
+
 /**
  * Increment eatCounter
  * If exceed minimum eatCounter, upgrade growthStep to next step

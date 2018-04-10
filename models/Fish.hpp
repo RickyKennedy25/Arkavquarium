@@ -70,6 +70,11 @@ class Fish : public Drawable {
          * @return {bool} REPLETE TIME <= starvingTimer <= STARVING TIME 
          */
         bool isStarving();
+
+        /**
+         * @return {bool} starvingTimer > STARVING TIME
+         */
+        bool isDie();
         
         /**
          * Increment eatCounter
