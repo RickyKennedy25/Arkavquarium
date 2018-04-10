@@ -118,6 +118,9 @@ bool AquariumController::main(double elapsedSeconds) {
 			case SDLK_e:
 				buyEgg();
 				break;
+			case SDLK_p:
+				buyPiranha();
+				break;
         }
     }
     if (!stillRunning) return false;
@@ -453,6 +456,14 @@ void AquariumController::buyGuppy(){
 		Data::setMoney(Data::getMoney() - Guppy::getPrice());
 		Guppy *g = new Guppy(this->width, this->height);
 		Data::getGuppies()->add(g);
+	}
+}
+
+void AquariumController::buyPiranha(){
+	if (Data::getMoney() >= Piranha::getPrice()){
+		Data::setMoney(Data::getMoney() - Piranha::getPrice());
+		Piranha *p = new Piranha(this->width, this->height);
+		Data::getPiranhas()->add(p);
 	}
 }
 
