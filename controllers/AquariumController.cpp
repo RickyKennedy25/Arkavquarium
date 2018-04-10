@@ -241,6 +241,17 @@ void AquariumController::produceCoin() {
         }
         currentPiranha = currentPiranha->getNext();
     }
+
+    LinkedListItem<Guppy*>* currentGuppy = Data::getGuppies()->getFirstItem();
+    while (currentGuppy != NULL) {
+        int coinValue = currentGuppy->getContent()->isProduceCoin();
+        if (coinValue > 0) {
+            Data::getCoins()->add(
+                new Coin(coinValue, * currentGuppy->getContent()->getPosition())
+            );
+        }
+        currentGuppy = currentGuppy->getNext();
+    }
 }
 
 /**
@@ -272,7 +283,7 @@ void AquariumController::moveObjects(double elapsedSeconds) {
     while (currentGuppy != NULL) {
         currentGuppy
             ->getContent()
-            ->update();
+            ->update(elapsedSeconds);
         currentGuppy
             ->getContent()
             ->setStarvingTimer(currentGuppy->getContent()->getStarvingTimer() + elapsedSeconds);
@@ -333,6 +344,10 @@ void AquariumController::moveObjects(double elapsedSeconds) {
     if(!(Data::getCoins()->isEmpty())){
         Coin *nearestcoin = findNearestCoin(currentSnail);
         currentSnail->moveToDestination(nearestcoin->getPosition(), elapsedSeconds);
+        if (*(currentSnail->getPosition()) == *(nearestcoin->getPosition())) {
+            Data::getCoins()->remove(nearestcoin);
+            delete nearestcoin;
+        }
     }
 }
 

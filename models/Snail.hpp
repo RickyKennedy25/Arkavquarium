@@ -8,7 +8,7 @@
 class Snail : public Drawable {
     private:
       const static std::string assetPath;
-      const int MAX_VELOCITY = 60;
+      const int MAX_VELOCITY = 40;
       tOrientation orientation;
         
     public:

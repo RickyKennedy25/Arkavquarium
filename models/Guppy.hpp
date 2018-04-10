@@ -47,19 +47,17 @@ class Guppy : public Fish {
         void setGrowthStep(tGrowthStep growthStep);
         
         /**
-         * Modulo produceCoinTimer with PRODUCE_COIN_PERIOD
+         * Reduce produceCoinTimer with PRODUCE_COIN_PERIOD
          * @return {int} 0 if PRODUCE_COIN_PERIOD == produceCoinTimer before edited
          *               this growthStep value if not
          */
         int isProduceCoin();
         
         /**
-         * Increment produceCoinTimer
-         * If isStarving, move Guppy to nearest food
-         * If position is equal destination, random new destination
-         * Otherwise move to destination
+         * Increment produceCoinTimer by elapsedSeconds
+         * @param {double} elapsed seconds since previous loop
          */
-        void update();
+        void update(double elapsedSeconds);
 
         /**
          * Override parent eat(). After parent eat(),

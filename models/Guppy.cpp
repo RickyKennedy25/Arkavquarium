@@ -44,16 +44,18 @@ void Guppy::setGrowthStep(tGrowthStep growthStep) {
 }
 
 /**
- * Modulo produceCoinTimer with PRODUCE_COIN_PERIOD
- * @return {bool} PRODUCE_COIN_PERIOD == produceCoinTimer before edited
+ * Reduce produceCoinTimer with PRODUCE_COIN_PERIOD
+ * @return {int} 0 if PRODUCE_COIN_PERIOD == produceCoinTimer before edited
+ *               this growthStep value if not
  */
 int Guppy::isProduceCoin() {
-    if (this->produceCoinTimer == PRODUCE_COIN_PERIOD) {
+    if (this->produceCoinTimer < PRODUCE_COIN_PERIOD) {
         return 0;
     } else {
-        if (this->getGrowthStep() == stepOne) { return 1; }
-        else if (this->getGrowthStep() == stepTwo) { return 2; }
-        else { return 3; }
+        this->produceCoinTimer -= PRODUCE_COIN_PERIOD;
+        if (this->getGrowthStep() == stepOne) { return Guppy::COIN_VALUE_STEP_ONE; }
+        else if (this->getGrowthStep() == stepTwo) { return Guppy::COIN_VALUE_STEP_TWO; }
+        else { return Guppy::COIN_VALUE_STEP_THREE; }
     }
 }
 
@@ -70,10 +72,11 @@ void Guppy::eat() {
 }
 
 /**
- * Increment produceCoinTimer
+ * Increment produceCoinTimer by elapsedSeconds
+ * @param {double} elapsed seconds since previous loop
  */
-void Guppy::update() {
-    this->produceCoinTimer++;
+void Guppy::update(double elapsedSeconds) {
+    this->produceCoinTimer += elapsedSeconds;
 }
 
 /**
