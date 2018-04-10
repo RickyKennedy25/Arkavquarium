@@ -52,6 +52,7 @@ class Data {
          */
         static Snail* getSnail();
 
+
 		/**
 		 * @return {int} money
 		 */
@@ -61,15 +62,23 @@ class Data {
 		 * @return {int} egg
 		 */
 		static int getEgg();
+        
+		/**
+		 * @return {int} eggPrice
+		 */
+		static int getEggPrice();
 
 		/**
 		 * @param {int} money
 		 */
 		static void setMoney(int money);
 
+
 		/**
-		 * @param {int} egg
-		 */
+		* @param {int} money
+		*/
+
+		
 		static void setEgg(int egg);
 
         /**

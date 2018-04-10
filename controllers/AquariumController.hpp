@@ -11,6 +11,8 @@
 #include "../models/LinkedList.hpp"
 #include "../models/Data.hpp"
 
+#define WIN_CONDITION 3
+
 class AquariumController {
      private:
          Tank *tank;
@@ -105,7 +107,7 @@ class AquariumController {
          * return {bool} Data::getEgg == WinCondition
          */
 
-        bool FinishState();
+        bool finishState();
 };
 
 
