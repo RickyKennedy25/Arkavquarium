@@ -61,8 +61,23 @@ bool AquariumController::main(double elapsedSeconds) {
     this->tank->handle_input();
     std::pair<double, double> clicked = this->tank->getLastClicked();
     if (clicked.first > 0 && clicked.second > 0) {
-        Food* newFood = new Food(clicked.first, clicked.second);
-        Data::getFoods()->add(newFood);
+        LinkedListItem<Coin*>* cointIt = Data::getCoins()->getFirstItem();
+        Coin* clickedCoin = NULL;
+        Position clickPos(clicked.first, clicked.second, false);
+        while (cointIt != NULL && !clickedCoin) {
+            if (*(cointIt->getContent()->getPosition()) == clickPos) {
+                clickedCoin = cointIt->getContent();
+            }
+            cointIt = cointIt->getNext();
+        }
+
+        if (clickedCoin != NULL) {
+            Data::getCoins()->remove(clickedCoin);
+            delete clickedCoin;
+        } else {
+            Food* newFood = new Food(clicked.first, clicked.second);
+            Data::getFoods()->add(newFood);
+        }
         this->tank->resetLastClicked();
     }
     if (this->tank->quit_pressed()) {
