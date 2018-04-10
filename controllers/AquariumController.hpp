@@ -97,8 +97,16 @@ class AquariumController {
         void drawDrawable(Drawable* drawable);
 		
 		void buyGuppy();
+
 		void buyEgg();
         
+        /**
+         * Finish State
+         * return {bool} Data::getEgg == WinCondition
+         */
+
+        bool FinishState();
 };
+
 
 #endif

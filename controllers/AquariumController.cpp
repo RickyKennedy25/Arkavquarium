@@ -1,5 +1,6 @@
 #include "AquariumController.hpp"
 #include <utility>
+#define WIN_CONDITION 3
 
 /**
  * Construct with some guppies, one piranha and one snail 
@@ -120,7 +121,10 @@ bool AquariumController::main(double elapsedSeconds) {
 				break;
         }
     }
-    if (!stillRunning) return false;
+    if (!stillRunning || this->FinishState()){
+        Tank::draw_text("CONGRATULATIONS!!!", 25, this->width/2, this->height/2, '255', '10', '10')ssss;
+        return false;
+    }
 
     this->moveObjects(elapsedSeconds);
     this->produceCoin();
@@ -456,4 +460,13 @@ void AquariumController::buyEgg(){
 		Data::setMoney(Data::getMoney() - Data::getEggPrice());
 		Data::setEgg(Data::getEgg()+1);
 	}
+}
+
+/**
+ * Finish State
+ * return {bool} Data::getEgg == WinCondition
+ */
+
+bool FinishState(){
+    return Data::getEgg == WIN_CONDITION ;
 }
