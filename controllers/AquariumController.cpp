@@ -11,7 +11,7 @@ AquariumController::AquariumController(int width, int height) {
 
     this->height = height;
     this->width = width;
-    Data::setMoney(1000000); 
+    Data::setMoney(200); 
     Data::setEgg(0); 
     Guppy* guppy1 = new Guppy(this->width, this->height);
     Data::getGuppies()->add(guppy1);
@@ -57,7 +57,7 @@ int AquariumController::getHeight() const {
 bool AquariumController::main(double elapsedSeconds) {
     bool stillRunning = true;
     
-    this->tank->handle_input();
+   this->tank->handle_input();
     std::pair<double, double> clicked = this->tank->getLastClicked();
     if (clicked.first > 0 && clicked.second > 0) {
         LinkedListItem<Coin*>* cointIt = Data::getCoins()->getFirstItem();
@@ -391,6 +391,11 @@ void AquariumController::draw() {
     this->tank->clear_screen();
     //this->tank->draw_text("Panah untuk bergerak, r untuk reset, x untuk keluar", 18, 10, 10, 0, 0, 0);
     this->tank->draw_image("assets/img/background.png",this->width/2,this->height/2);
+	//Draw Money
+	this->tank->draw_text(std::to_string(Data::getMoney()), 35, 30, 30, 0, 0, 0);
+	//Draw Egg
+	this->tank->draw_image("assets/img/egg.png", 1366 - 30, 55);
+	this->tank->draw_text(std::to_string(Data::getEgg()), 35, 1366-70, 30, 0, 0, 0);
 
     LinkedListItem<Guppy*> *guppyIt = Data::getGuppies()->getFirstItem();
     while (guppyIt != NULL) {
