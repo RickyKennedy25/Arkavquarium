@@ -46,6 +46,36 @@ LinkedList<Coin*>* Data::getCoins() {
 Snail* Data::getSnail() {
     return Data::snail;
 }
+
+
+/**
+ * @return {int} money
+ */
+static int getMoney(){
+	return Data::money;
+}
+
+/**
+ * @return {int} egg
+ */
+static int getEgg(){
+	return Data::egg;
+}
+
+/**
+ * @param {int} money
+ */
+static void setMoney(int money){
+	Data::money = money;
+}
+
+/**
+ * @param {int} egg
+ */
+static void setEgg(int egg){
+	Data::egg = egg;
+}
+
 /**
  * @param {Snail*} new snail
  */

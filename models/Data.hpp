@@ -17,6 +17,8 @@ class Data {
         static LinkedList<Food*> *foods;
         static LinkedList<Coin*> *coins;
         static Snail *snail;
+		static int money;
+		static int egg;
     
     public:
         /**
@@ -49,6 +51,26 @@ class Data {
          */
         static Snail* getSnail();
 
+		/**
+		 * @return {int} money
+		 */
+		static int getMoney();
+
+		/**
+		 * @return {int} egg
+		 */
+		static int getEgg();
+
+		/**
+		 * @param {int} money
+		 */
+		static void setMoney(int money);
+
+		/**
+		 * @param {int} egg
+		 */
+		static void setEgg(int egg);
+
         /**
          * @param {Snail*} new snail
          */
@@ -58,6 +80,7 @@ class Data {
          * Destruct all linked list and create new
          */
         static void clear();
+		 
 
 };
 
