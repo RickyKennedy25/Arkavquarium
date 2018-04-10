@@ -12,6 +12,7 @@ AquariumController::AquariumController(int width, int height) {
     this->height = height;
     this->width = width;
     Data::setMoney(1000000); 
+    Data::setEgg(0); 
     Guppy* guppy1 = new Guppy(this->width, this->height);
     Data::getGuppies()->add(guppy1);
 
@@ -436,5 +437,12 @@ void AquariumController::buyGuppy(){
 		Data::setMoney(Data::getMoney() - Guppy::getPrice());
 		Guppy *g = new Guppy(this->width, this->height);
 		Data::getGuppies()->add(g);
+	}
+}
+
+void AquariumController::buyEgg(){
+	if(Data::getMoney() >= Data::getEggPrice()){
+		Data::setMoney(Data::getMoney() - Data::getEggPrice());
+		Data::setEgg(Data::getEgg()+1);
 	}
 }

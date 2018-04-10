@@ -97,6 +97,7 @@ class AquariumController {
         void drawDrawable(Drawable* drawable);
 		
 		void buyGuppy();
+		void buyEgg();
         
 };
 

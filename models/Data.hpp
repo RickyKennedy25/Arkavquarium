@@ -17,8 +17,9 @@ class Data {
         static LinkedList<Food*> *foods;
         static LinkedList<Coin*> *coins;
         static Snail *snail;
-		// static int money;
-		// static int egg;
+		static int money;
+		static int egg;
+		static int eggPrice;
     
     public:
         /**
@@ -51,25 +52,30 @@ class Data {
          */
         static Snail* getSnail();
 
-		// /**
-		//  * @return {int} money
-		//  */
-		// static int getMoney();
+		/**
+		* @return {int} money
+		*/
+		static int getMoney();
 
-		// /**
-		//  * @return {int} egg
-		//  */
-		// static int getEgg();
+		/**
+		* @return {int} egg
+		*/
+		static int getEgg();
 
-		// /**
-		//  * @param {int} money
-		//  */
-		// static void setMoney(int money);
+		/**
+		 * @return {int} eggPrice
+		 */
+		static int getEggPrice();
 
-		// /**
-		//  * @param {int} egg
-		//  */
-		// static void setEgg(int egg);
+		/**
+		* @param {int} money
+		*/
+		static void setMoney(int money);
+
+		/**
+		* @param {int} egg
+		*/
+		static void setEgg(int egg);
 
         /**
          * @param {Snail*} new snail
