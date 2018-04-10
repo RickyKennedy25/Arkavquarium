@@ -113,11 +113,16 @@ void Tank::handle_input() {
             if ( e.type == SDL_QUIT ) {
                 quit = true;
             } else if (e.type == SDL_MOUSEBUTTONDOWN) {
-                std::cout << e.motion.x << "," << e.motion.y << std::endl;
+                this->lastClicked.first = e.motion.x;
+                this->lastClicked.second = e.motion.y;
             } else if (e.type == SDL_KEYDOWN && !e.key.repeat) {
+                this->lastClicked.first = -1;
+                this->lastClicked.second = -1;
                 pressedKeys.insert(e.key.keysym.sym);
                 tappedKeys.insert(e.key.keysym.sym);
             } else if (e.type == SDL_KEYUP) {
+                this->lastClicked.first = -1;
+                this->lastClicked.second = -1;
                 pressedKeys.erase(e.key.keysym.sym);
             }
         }

@@ -23,6 +23,11 @@ AquariumController::AquariumController(int width, int height) {
     Snail* snail = new Snail(this->width, this->height);
     Data::setSnail(snail);
 
+    Coin* coin = new Coin(this->width, this->height);
+    coin->getPosition()->setAbsis(40);
+    coin->getPosition()->setOrdinate(20);
+    Data::getCoins()->add(coin);
+
     this->tank = new Tank(this->width, this->height);
     this->tank->init();
 
@@ -246,7 +251,7 @@ void AquariumController::moveObjects(double elapsedSeconds) {
     LinkedListItem<Coin *> *currentCoin = Data::getCoins()->getFirstItem();
 
     while (currentCoin != NULL) {
-        currentCoin->getContent()->move(elapsedSeconds);
+        currentCoin->getContent()->move(this->getHeight(), elapsedSeconds);
         currentCoin = currentCoin->getNext();
     }
 

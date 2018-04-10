@@ -9,7 +9,7 @@ const std::string Snail::assetPath = "assets/img/snail.png";
 Snail::Snail(int maxWidth, int maxHeight) {
    this->position = new Position(maxWidth, maxHeight, true);
    std::cout<<maxHeight<<std::endl;
-   this->position->setOrdinate(maxHeight);
+   this->position->setOrdinate(maxHeight - 30);
 }
 
 /**

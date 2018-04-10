@@ -5,7 +5,7 @@
 
 class Coin {
     private:
-        static const int MAX_VELOCITY=4;
+        static const int MAX_VELOCITY=40;
         const static std::string assetPathCoin;
 
         Position* position;
@@ -26,7 +26,7 @@ class Coin {
         /**
          * Decrease y-position by velocity less than maxVelocity
          */
-        void move(double elapsedSeconds);
+        void move(int maxHeight, double elapsedSeconds);
         
         /**
          * @return {Position*} Coin position

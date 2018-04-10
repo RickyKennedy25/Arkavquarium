@@ -86,7 +86,7 @@ void Position::move(Position dest, double maxVelocity) {
 void Position::moveHorizontal(Position dest, double maxVelocity) {
     double dx;
     dx = dest.getAbsis() - this->x;
-    if (dx > 0) {
+    if (dx < 0) {
         this->x += max(-maxVelocity, dx);
     } else {
         this->x += min(maxVelocity, dx);
@@ -101,7 +101,7 @@ void Position::moveHorizontal(Position dest, double maxVelocity) {
 void Position::moveVertical(Position dest,double maxVelocity) {
     double dy;
     dy = dest.getOrdinate() - this->y;
-    if (dy > 0) {
+    if (dy < 0) {
         this->y += max(-maxVelocity, dy);
     } else {
         this->y += min(maxVelocity, dy);

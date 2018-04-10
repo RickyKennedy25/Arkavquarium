@@ -25,8 +25,8 @@ Coin::Coin(int value, Position position) {
 /**
  * Decrease y-position by velocity less than maxVelocity
  */
-void Coin::move(double elapsedSeconds) {
-    Position *bottom = new Position(0, 0, false);
+void Coin::move( int maxHeight, double elapsedSeconds) {
+    Position *bottom = new Position(0, maxHeight, false);
     this->getPosition()->moveVertical(*bottom, elapsedSeconds * MAX_VELOCITY);
 }
 
