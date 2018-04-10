@@ -39,8 +39,8 @@ void Piranha::eat(int x) {
 std::string Piranha::getAssetPath() {
     std::string path = Piranha::assetPath;
 
-    if (this->getOrientation() == left) { path += "_left"; }
-    else { path += "_right"; }
+    if (this->getOrientation() == left) { path += "_left_big"; }
+    else { path += "_right_big"; }
 
     if (this->isStarving()) { path += "_hungry"; }
 

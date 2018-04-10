@@ -300,10 +300,12 @@ void AquariumController::moveObjects(double elapsedSeconds) {
         currentGuppy
             ->getContent()
             ->setStarvingTimer(currentGuppy->getContent()->getStarvingTimer() + elapsedSeconds);
+        
         if (currentGuppy->getContent()->isDie()){
             LinkedListItem<Guppy*> *deleteGuppy = currentGuppy;
             currentGuppy = currentGuppy->getNext();
-            Data::getGuppies()->remove(deleteGuppy);
+            Data::getGuppies()->remove(deleteGuppy->getContent());
+            delete deleteGuppy->getContent();
         } else {    
             if (currentGuppy->getContent()->isStarving()) {
                 Food *nearestFood = this->findNearestFood(currentGuppy->getContent());
