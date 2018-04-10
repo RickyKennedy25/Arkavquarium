@@ -290,7 +290,7 @@ void AquariumController::moveObjects(double elapsedSeconds) {
     LinkedListItem<Food *> *currentFood = Data::getFoods()->getFirstItem();
     while(currentFood != NULL){
         currentFood->getContent()->move(this->height-(this->height/10), elapsedSeconds);
-        if (currentFood->getContent()->getPosition()->getOrdinate() == this->height/10) {
+        if (currentFood->getContent()->getPosition()->getOrdinate() >= 9*this->height/10) {
             Food* droppedFood = currentFood->getContent();
             Data::getFoods()->remove(droppedFood);
             delete droppedFood;
@@ -306,12 +306,12 @@ void AquariumController::moveObjects(double elapsedSeconds) {
         currentGuppy
             ->getContent()
             ->setStarvingTimer(currentGuppy->getContent()->getStarvingTimer() + elapsedSeconds);
-        
+
         if (currentGuppy->getContent()->isDie()){
-            LinkedListItem<Guppy*> *deleteGuppy = currentGuppy;
+            LinkedListItem<Guppy*> *dropedGuppy = currentGuppy;
             currentGuppy = currentGuppy->getNext();
-            Data::getGuppies()->remove(deleteGuppy->getContent());
-            delete deleteGuppy->getContent();
+            Data::getGuppies()->remove(dropedGuppy->getContent());
+            delete dropedGuppy->getContent();
         } else {    
             if (currentGuppy->getContent()->isStarving()) {
                 Food *nearestFood = this->findNearestFood(currentGuppy->getContent());
@@ -344,28 +344,36 @@ void AquariumController::moveObjects(double elapsedSeconds) {
         currentPiranha
             ->getContent()
             ->setStarvingTimer(currentPiranha->getContent()->getStarvingTimer() + elapsedSeconds);
-        if (currentPiranha->getContent()->isStarving()) {
-            Guppy *nearestGuppy = findNearestGuppy(currentPiranha->getContent());
-            if (nearestGuppy == NULL) {
-                currentPiranha
-                    ->getContent()
-                    ->moveToDestination(this->getWidth(), this->getHeight(), elapsedSeconds);
+        if (currentPiranha->getContent()->isDie()){
+            LinkedListItem<Piranha*> *dropedPiranha = currentPiranha;
+            currentPiranha = currentPiranha->getNext();
+            Data::getPiranhas()->remove(dropedPiranha->getContent());
+            delete dropedPiranha->getContent();
+        } else {
+            if (currentPiranha->getContent()->isStarving()) {
+                Guppy *nearestGuppy = findNearestGuppy(currentPiranha->getContent());
+                if (nearestGuppy == NULL) {
+                    currentPiranha
+                        ->getContent()
+                        ->moveToDestination(this->getWidth(), this->getHeight(), elapsedSeconds);
+                } else {
+                    currentPiranha
+                        ->getContent()
+                        ->moveToDestination(nearestGuppy->getPosition(), elapsedSeconds);
+                    if (*(currentPiranha->getContent()->getPosition()) == *(nearestGuppy->getPosition())) {
+                        currentPiranha->getContent()->eat(nearestGuppy->getGrowthStepInt());
+                        Data::getGuppies()->remove(nearestGuppy);
+                        delete nearestGuppy;
+                    }
+                }
             } else {
                 currentPiranha
                     ->getContent()
-                    ->moveToDestination(nearestGuppy->getPosition(), elapsedSeconds);
-                if (*(currentPiranha->getContent()->getPosition()) == *(nearestGuppy->getPosition())) {
-                    currentPiranha->getContent()->eat(nearestGuppy->getGrowthStepInt());
-                    Data::getGuppies()->remove(nearestGuppy);
-                    delete nearestGuppy;
-                }
+                    ->moveToDestination(this->getWidth(), this->getHeight(), elapsedSeconds);
             }
-        } else {
-            currentPiranha
-                ->getContent()
-                ->moveToDestination(this->getWidth(), this->getHeight(), elapsedSeconds);
+            currentPiranha = currentPiranha->getNext();
         }
-        currentPiranha = currentPiranha->getNext();
+        
     }
 
     Snail *currentSnail = Data::getSnail();

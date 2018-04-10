@@ -115,7 +115,7 @@ void Fish::moveToDestination(Position* position, double elapsedSeconds) {
  */
 void Fish::moveToDestination(int maxWidth, int maxHeight, double elapsedSeconds) {
     if (*(this->position) == *(this->destination)){
-	    this->destination = new Position(maxWidth, maxHeight, true);
+	    this->destination = new Position(maxWidth, maxHeight*9/10, true);
     }
     this->position->move(*(this->destination), elapsedSeconds * this->maxVelocity);
     if (this->position->getAbsis() < this->destination->getAbsis()) {

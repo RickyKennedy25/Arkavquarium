@@ -2,7 +2,7 @@
 1. Akuarium done
  * Akuarium dapat dianggap sebagai sebuah matriks 2D (sumbu X dan Y) dengan ukuran yang sama dengan ukuran layar. 
  * Posisi ujung kiri-atas akuarium memiliki koordinat (0,0). Semakin ke bawah, maka nilai y semakin besar. Semakin ke kanan, nilai x semakin membesar.
-2. Guppy 
+2. Guppy  done
  * Guppy dapat dibeli oleh pemain dengan uang (tentukan harganya sendiri). 
  * Ketika guppy dibeli, guppy dimunculkan pada posisi random dan dalam kondisi tahap pertumbuhan ke-1.
  * Jika dalam waktu M guppy tidak menemukan makanan, guppy mati. done

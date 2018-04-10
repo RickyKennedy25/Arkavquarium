@@ -115,7 +115,6 @@ void Tank::handle_input() {
             } else if (e.type == SDL_MOUSEBUTTONDOWN) {
                 this->lastClicked.first = e.motion.x;
                 this->lastClicked.second = e.motion.y;
-                std::cout<<e.motion.x <<","<<e.motion.y<<std::endl;
             } else if (e.type == SDL_KEYDOWN && !e.key.repeat) {
                 pressedKeys.insert(e.key.keysym.sym);
                 tappedKeys.insert(e.key.keysym.sym);
