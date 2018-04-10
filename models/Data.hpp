@@ -19,10 +19,7 @@ class Data {
         static Snail *snail;
 		static int money;
 		static int egg;
-<<<<<<< HEAD
-=======
 		static int eggPrice;
->>>>>>> 326c31f0b5d2af490f031f552ca50b96d3b03030
     
     public:
         /**
@@ -55,26 +52,7 @@ class Data {
          */
         static Snail* getSnail();
 
-		/**
-<<<<<<< HEAD
-		 * @return {int} money
-		 */
-		static int getMoney();
-
-		/**
-		 * @return {int} egg
-		 */
-		static int getEgg();
-
-		/**
-		 * @param {int} money
-		 */
-		static void setMoney(int money);
-
-		/**
-		 * @param {int} egg
-		 */
-=======
+		/* 
 		* @return {int} money
 		*/
 		static int getMoney();
@@ -97,7 +75,7 @@ class Data {
 		/**
 		* @param {int} egg
 		*/
->>>>>>> 326c31f0b5d2af490f031f552ca50b96d3b03030
+		
 		static void setEgg(int egg);
 
         /**
