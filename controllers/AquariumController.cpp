@@ -12,6 +12,7 @@ AquariumController::AquariumController(int width, int height) {
     this->height = height;
     this->width = width;
     Data::setMoney(1000000); 
+    Data::setEgg(0); 
     Guppy* guppy1 = new Guppy(this->width, this->height);
     Data::getGuppies()->add(guppy1);
 
@@ -71,6 +72,7 @@ bool AquariumController::main(double elapsedSeconds) {
 
         if (clickedCoin != NULL) {
             Data::getCoins()->remove(clickedCoin);
+			Data::setMoney(Data::getMoney() + clickedCoin->getValue());
             delete clickedCoin;
         } else {
             Food* newFood = new Food(clicked.first, clicked.second);
@@ -112,6 +114,9 @@ bool AquariumController::main(double elapsedSeconds) {
                 break;
 			case SDLK_g:
 				buyGuppy();
+				break;
+			case SDLK_e:
+				buyEgg();
 				break;
         }
     }
@@ -443,5 +448,12 @@ void AquariumController::buyGuppy(){
 		Data::setMoney(Data::getMoney() - Guppy::getPrice());
 		Guppy *g = new Guppy(this->width, this->height);
 		Data::getGuppies()->add(g);
+	}
+}
+
+void AquariumController::buyEgg(){
+	if(Data::getMoney() >= Data::getEggPrice()){
+		Data::setMoney(Data::getMoney() - Data::getEggPrice());
+		Data::setEgg(Data::getEgg()+1);
 	}
 }

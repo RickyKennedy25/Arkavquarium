@@ -2,7 +2,11 @@
 1. Akuarium done
  * Akuarium dapat dianggap sebagai sebuah matriks 2D (sumbu X dan Y) dengan ukuran yang sama dengan ukuran layar. 
  * Posisi ujung kiri-atas akuarium memiliki koordinat (0,0). Semakin ke bawah, maka nilai y semakin besar. Semakin ke kanan, nilai x semakin membesar.
+<<<<<<< HEAD
 2. Guppy  done
+=======
+2. Guppy  DONE
+>>>>>>> 326c31f0b5d2af490f031f552ca50b96d3b03030
  * Guppy dapat dibeli oleh pemain dengan uang (tentukan harganya sendiri). 
  * Ketika guppy dibeli, guppy dimunculkan pada posisi random dan dalam kondisi tahap pertumbuhan ke-1.
  * Jika dalam waktu M guppy tidak menemukan makanan, guppy mati. done
@@ -10,7 +14,7 @@
  * Makanan ikan muncul ketika dibeli oleh pemain (harus mengurangi uang).
  * Makanan ikan selalu bergerak ke bawah. 
  * Kecepatan gerak makanan ikan harus lebih lambat dari kecepatan ikan.
-4. Koin 
+4. Koin DONE 
  * Koin selalu bergerak ke bawah. done
  * Ketika koin sampai di dasar, koin tersebut diam. done
  * Koin yang diambil meningkatkan nilai atribut uang pemain sejumlah nilai koin.
