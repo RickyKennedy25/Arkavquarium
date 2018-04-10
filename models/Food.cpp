@@ -1,11 +1,12 @@
 #include <iostream>
 #include "Food.hpp"
 
+const std::string Food::assetPath = "assets/img/food.png";
 /**
  * Construct Food at random position and 0 ordinate
  */
-Food::Food() {
-    this->position = new Position(800,600,true); // assume maxHeight = 600 and maxWidth = 800 
+Food::Food(int maxWidth, int maxHeight) {
+    this->position = new Position(maxWidth, maxHeight, true); // assume maxHeight = 600 and maxWidth = 800 
     this->position->setOrdinate(0);
 }
 
@@ -18,11 +19,12 @@ Food::Food(int x) {
 }
 
 /**
- * Move Food to dest
- * @param {Positon} destination
+ * Move Food to bottom
+ * @param {double} elapsedSeconds
  */
-void Food::move(Position* dest) {
-    this->position->moveVertical(*dest,(double)MAX_VELOCITY);
+void Food::move(double elapsedSeconds) {
+    Position *bottom = new Position(0, 0, false);
+    this->position->moveVertical(*bottom, elapsedSeconds * MAX_VELOCITY);
 }
 
 /**
@@ -30,4 +32,11 @@ void Food::move(Position* dest) {
  **/
 Position* Food::getPosition() {
     return this->position;
+}
+
+/**
+ * @return {std::string} asset path
+ */
+std::string Food::getAssetPath() {
+    return Food::assetPath;
 }

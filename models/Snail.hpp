@@ -5,8 +5,9 @@
 
 class Snail {
     private:
-        const int MAX_VELOCITY = 5;
-        Position* position;
+      const static std::string assetPath;
+      const int MAX_VELOCITY = 20;
+      Position *position;
         
     public:
         /**
@@ -25,8 +26,12 @@ class Snail {
          * Move position to dest not exceeding MAX_VELOCITY
          * @param {Position} destination
          */
-        void moveToDestination(Position position);
-        
+        void moveToDestination(Position position, double elapsedSeconds);
+
+        /**
+         * @return {std::string} asset path
+         */
+        static std::string getAssetPath();
 };
 
 #endif

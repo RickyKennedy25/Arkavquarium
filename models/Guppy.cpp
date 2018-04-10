@@ -1,7 +1,8 @@
 #include "Guppy.hpp"
 
 const double Guppy::PRODUCE_COIN_PERIOD = 5;
-const std::string Guppy::assetPath = "assets/img/guppy.png";
+const std::string Guppy::assetPathLeft = "assets/img/guppy_left.png";
+const std::string Guppy::assetPathRight = "assets/img/guppy_right.png";
 
 /**
  * Construct Guppy
@@ -30,5 +31,9 @@ void Guppy::update() {
  * @return {std::string} asset path
  */
 std::string Guppy::getAssetPath() {
-    return Guppy::assetPath;
+    if (this->getPosition()->getAbsis() > this->getDestination()->getAbsis()) {
+        return Guppy::assetPathLeft;
+    } else {
+        return Guppy::assetPathRight;
+    }
 }

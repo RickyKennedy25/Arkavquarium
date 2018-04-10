@@ -106,8 +106,8 @@ void Fish::eat() {
  * @param {Position} is the nearest Food for Guppy
  *   or nearest Guppy for Piranha
  */
-void Fish::moveToDestination(Position* position) {
-	this->position->move(*position, MAX_VELOCITY); 
+void Fish::moveToDestination(Position* position, double elapsedSeconds) {
+	this->position->move(*position, elapsedSeconds * MAX_VELOCITY); 
 }
 
 /**
@@ -115,8 +115,11 @@ void Fish::moveToDestination(Position* position) {
  * If Fish Position equal to default destination
  * random new destination 
  */
-void Fish::moveToDestination(int maxWidth, int maxHeight) {
-    if(this->position == this->destination)
+void Fish::moveToDestination(int maxWidth, int maxHeight, double elapsedSeconds) {
+    if (*(this->position) == *(this->destination)){
 	    this->destination = new Position(maxWidth, maxHeight, true);
-    this->position->move(*this->destination, MAX_VELOCITY);
+        std::cout<<this->destination->getAbsis()<<","
+                 <<this->destination->getOrdinate()<<std::endl;
+    }
+    this->position->move(*(this->destination), elapsedSeconds * MAX_VELOCITY);
 }

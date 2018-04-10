@@ -82,8 +82,9 @@ class AquariumController {
          * For every coin, move coin to ground
          * For every food, move food to food
          * Move snail to nearest coin
+         * @param {double} elapsed seconds
          */
-        void moveObjects();
+        void moveObjects(double elapsedSecods);
 
         /**
          * Draw all entity

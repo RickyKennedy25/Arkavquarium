@@ -5,6 +5,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <set>
+#include <utility>
 #include <string>
 #include <map>
 
@@ -25,6 +26,7 @@ class Tank {
         bool quit;
         std::set<SDL_Keycode> pressedKeys;
         std::set<SDL_Keycode> tappedKeys;
+        std::pair<double, double> lastClicked;
 
     public:
 
