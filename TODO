@@ -1,6 +1,6 @@
 
-1. Akuarium
- * Akuarium dapat dianggap sebagai sebuah matriks 2D (sumbu X dan Y) dengan ukuran yang sama dengan ukuran layar.
+1. Akuarium done
+ * Akuarium dapat dianggap sebagai sebuah matriks 2D (sumbu X dan Y) dengan ukuran yang sama dengan ukuran layar. 
  * Posisi ujung kiri-atas akuarium memiliki koordinat (0,0). Semakin ke bawah, maka nilai y semakin besar. Semakin ke kanan, nilai x semakin membesar.
 2. Guppy
  * Guppy dapat dibeli oleh pemain dengan uang (tentukan harganya sendiri).

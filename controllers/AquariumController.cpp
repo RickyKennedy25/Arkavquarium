@@ -17,10 +17,8 @@ AquariumController::AquariumController(int width, int height) {
 
     Guppy* guppy2 = new Guppy(this->width, this->height);
     Data::getGuppies()->add(guppy2);
-/*
     Piranha* piranha = new Piranha(this->width, this->height);
     Data::getPiranhas()->add(piranha);
-*/
     Snail* snail = new Snail(this->width, this->height);
     Data::setSnail(snail);
 
@@ -285,7 +283,7 @@ void AquariumController::moveObjects(double elapsedSeconds) {
 
     LinkedListItem<Food *> *currentFood = Data::getFoods()->getFirstItem();
     while(currentFood != NULL){
-        currentFood->getContent()->move(this->height/10, elapsedSeconds);
+        currentFood->getContent()->move(this->height-(this->height/10), elapsedSeconds);
         if (currentFood->getContent()->getPosition()->getOrdinate() == this->height/10) {
             Food* droppedFood = currentFood->getContent();
             Data::getFoods()->remove(droppedFood);

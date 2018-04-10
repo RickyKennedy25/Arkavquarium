@@ -8,7 +8,7 @@ const std::string Snail::assetPath = "assets/img/snail";
  */
 Snail::Snail(int maxWidth, int maxHeight) {
    this->position = new Position(maxWidth, maxHeight, true);
-   this->position->setOrdinate(maxHeight/10);
+   this->position->setOrdinate(maxHeight-(maxHeight/10));
    this->orientation = left;
 }
 
