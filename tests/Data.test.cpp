@@ -31,7 +31,7 @@ int testDataFoods() {
 
     itTestUnit("add data to foods");
     Data::getFoods()->add(new Food(20, 30));
-    if (!Data::getPiranhas()->isEmpty()) { itSuccess(); }
+    if (!Data::getFoods()->isEmpty()) { itSuccess(); }
     else { itFailed(); countFail++; }
  
     Data::clear();      
