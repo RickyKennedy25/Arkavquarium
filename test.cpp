@@ -3,6 +3,7 @@
 #include "tests/Data.test.hpp"
 #include "tests/Position.test.hpp"
 #include "tests/LinkedList.test.hpp"
+#include "tests/LinkedListItem.test.hpp"
 
 int main() {
     int countFail = 0;
@@ -11,6 +12,7 @@ int main() {
     countFail += testData();
     countFail += testPosition();
     countFail += testLinkedList();
+    countFail += testLinkedListItem();
 
     std::cout << "Done testing with " << countFail << " number(s) of fail test" << std::endl;
 
