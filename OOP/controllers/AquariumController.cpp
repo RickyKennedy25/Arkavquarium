@@ -126,6 +126,9 @@ bool AquariumController::main(double elapsedSeconds) {
 			case SDLK_p:
 				buyPiranha();
 				break;
+            case SDLK_r:
+                Data::setMoney(5000);
+                break;
         }
     }
     if (!stillRunning ){

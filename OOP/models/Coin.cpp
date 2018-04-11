@@ -2,6 +2,7 @@
 #include "Coin.hpp"
 
 const std::string Coin::assetPathCoin = "assets/img/coin_shine.png";
+const std::string Coin::assetPathRuby = "assets/img/ruby.png";
 
 /**
  * Construct Coin at random position and random value
@@ -50,5 +51,10 @@ int Coin::getValue() const {
  */
 std::string Coin::getAssetPath()
 {
-    return Coin::assetPathCoin;
+    if(this->getValue() < 50 ){
+        return Coin::assetPathCoin;
+    } else {
+        return Coin::assetPathRuby;
+    }
+    
 }

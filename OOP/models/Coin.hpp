@@ -8,6 +8,7 @@ class Coin : public Drawable {
     private:
         static const int MAX_VELOCITY=40;
         const static std::string assetPathCoin;
+        const static std::string assetPathRuby;
 
         int value;
     public:
