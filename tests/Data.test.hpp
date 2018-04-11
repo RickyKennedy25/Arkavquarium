@@ -3,8 +3,8 @@
 
 int testDataGuppies();
 int testDataPiranhas();
-int testDataCoin();
-int testDataFood();
+int testDataCoins();
+int testDataFoods();
 int testData();
 
 #endif
