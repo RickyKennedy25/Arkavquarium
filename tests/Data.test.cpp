@@ -7,7 +7,6 @@ int testDataGuppies() {
 
     itTestUnit("add data to guppies");
     Data::getGuppies()->add(new Guppy(20, 30));
-
     if (!Data::getGuppies()->isEmpty()) { itSuccess(); }
     else { itFailed(); countFail++; }
 
@@ -20,7 +19,6 @@ int testDataPiranhas() {
 
     itTestUnit("add data to piranhas");
     Data::getPiranhas()->add(new Piranha(20, 30));
-
     if (!Data::getPiranhas()->isEmpty()) { itSuccess(); }
     else { itFailed(); countFail++; }
 
@@ -31,12 +29,20 @@ int testDataPiranhas() {
 int testDataFoods() {
     int countFail = 0;
 
-    Data::clear();
-    return countFail;
+    itTestUnit("add data to foods");
+    Data::getFoods()->add(new Food(20, 30));
+    if (!Data::getPiranhas()->isEmpty()) { itSuccess(); }
+    else { itFailed(); countFail++; }
+ 
+    Data::clear();      
 }
-
 int testDataCoins() {
     int countFail = 0;
+
+    itTestUnit("add data to coins");
+    Data::getCoins()->add(new Coin(20, *(new Position(2,3))));
+    if (!Data::getCoins()->isEmpty()) { itSuccess(); }
+    else { itFailed(); countFail++; }
 
     Data::clear();
     return countFail;
