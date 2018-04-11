@@ -13,7 +13,7 @@ class Tank {
 
     private:
         // Nama font yang digunakan untuk menggambar tulisan.
-        const char* const FONT_NAME = "assets/ttf/OpenSans-Regular.ttf";
+        const char* const FONT_NAME = "assets/ttf/VCR_OSD_MONO_1.001.ttf";
 
         int height;
         int width;

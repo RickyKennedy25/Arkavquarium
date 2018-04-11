@@ -126,6 +126,9 @@ bool AquariumController::main(double elapsedSeconds) {
 			case SDLK_p:
 				buyPiranha();
 				break;
+            case SDLK_r:
+                Data::setMoney(5000);
+                break;
         }
     }
     if (!stillRunning ){
@@ -411,10 +414,15 @@ void AquariumController::draw() {
     //this->tank->draw_text("Panah untuk bergerak, r untuk reset, x untuk keluar", 18, 10, 10, 0, 0, 0);
     this->tank->draw_image("assets/img/background.png",this->width/2,this->height/2);
 	//Draw Money
-	this->tank->draw_text(std::to_string(Data::getMoney()), 35, 30, 30, 0, 0, 0);
+    this->tank->draw_image("assets/img/coin_shine.png", 15, 50);
+	this->tank->draw_text(std::to_string(Data::getMoney()), 35, 30, 35, 0, 0, 0);
 	//Draw Egg
-	this->tank->draw_image("assets/img/egg.png", 1366 - 30, 55);
-	this->tank->draw_text(std::to_string(Data::getEgg()), 35, 1366-70, 30, 0, 0, 0);
+	this->tank->draw_image("assets/img/egg.png", this->getWidth() - 30, 55);
+	this->tank->draw_text(std::to_string(Data::getEgg()), 35, this->getWidth()-70, 35, 0, 0, 0);
+    
+    this->tank->draw_text("Press G to buy Guppy (100 coins)        Press P to buy Piranha (1000 coins)          Press E to buy Egg (1000 coins)", 20, 15, 77, 0, 0, 0);
+
+
 
     LinkedListItem<Guppy*> *guppyIt = Data::getGuppies()->getFirstItem();
     while (guppyIt != NULL) {
