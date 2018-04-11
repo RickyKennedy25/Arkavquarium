@@ -5,16 +5,6 @@ const std::string Coin::assetPathCoin = "assets/img/coin_shine.png";
 const std::string Coin::assetPathRuby = "assets/img/ruby.png";
 
 /**
- * Construct Coin at random position and random value
- * assume value less than 10
- */
-Coin::Coin(int maxWidth, int maxHeight) {
-    this->position = new Position(maxWidth,maxHeight,true);
-    // this->position->setOrdinate(100);
-    this->value = rand() %10; 
-}
-
-/**
  * Construct Coin at position
  * @param {int} value of coin
  * @param {Position} initial position

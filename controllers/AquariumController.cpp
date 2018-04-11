@@ -20,8 +20,7 @@ AquariumController::AquariumController(int width, int height) {
 
     Guppy* guppy2 = new Guppy(this->width, this->height);
     Data::getGuppies()->add(guppy2);
-    Piranha* piranha = new Piranha(this->width, this->height);
-    Data::getPiranhas()->add(piranha);
+
     Snail* snail = new Snail(this->width, this->height);
     Data::setSnail(snail);
 
@@ -413,16 +412,6 @@ void AquariumController::draw() {
     this->tank->clear_screen();
     //this->tank->draw_text("Panah untuk bergerak, r untuk reset, x untuk keluar", 18, 10, 10, 0, 0, 0);
     this->tank->draw_image("assets/img/background.png",this->width/2,this->height/2);
-	//Draw Money
-    this->tank->draw_image("assets/img/coin_shine.png", 15, 50);
-	this->tank->draw_text(std::to_string(Data::getMoney()), 35, 30, 35, 0, 0, 0);
-	//Draw Egg
-	this->tank->draw_image("assets/img/egg.png", this->getWidth() - 30, 55);
-	this->tank->draw_text(std::to_string(Data::getEgg()), 35, this->getWidth()-70, 35, 0, 0, 0);
-    
-    this->tank->draw_text("Press G to buy Guppy (100 coins)        Press P to buy Piranha (1000 coins)          Press E to buy Egg (1000 coins)", 20, 15, 77, 0, 0, 0);
-
-
 
     LinkedListItem<Guppy*> *guppyIt = Data::getGuppies()->getFirstItem();
     while (guppyIt != NULL) {
@@ -451,6 +440,15 @@ void AquariumController::draw() {
     Snail *currentSnail;
     currentSnail = Data::getSnail();
     this->drawDrawable(currentSnail);
+    
+	//Draw Money
+    this->tank->draw_image("assets/img/coin_shine.png", 15, 50);
+	this->tank->draw_text(std::to_string(Data::getMoney()), 35, 30, 35, 0, 0, 0);
+	//Draw Egg
+	this->tank->draw_image("assets/img/egg.png", this->getWidth() - 30, 55);
+	this->tank->draw_text(std::to_string(Data::getEgg()), 35, this->getWidth()-70, 35, 0, 0, 0);
+    
+    this->tank->draw_text("Press G to buy Guppy (100 coins)        Press P to buy Piranha (1000 coins)          Press E to buy Egg (1000 coins)", 20, 15, 77, 0, 0, 0);
     
     if (this->winState()) {
         this->tank->draw_text("CONGRATULATIONS!!!", 25, (int)this->width/2, (int)this->height/2, 0, 0, 0);

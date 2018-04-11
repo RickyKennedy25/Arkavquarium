@@ -12,10 +12,6 @@ class Coin : public Drawable {
 
         int value;
     public:
-        /**
-         * Construct Coin at random position and random value
-         */
-        Coin(int maxWidth, int maxHeight);
         
         /**
          * Construct Coin at position
